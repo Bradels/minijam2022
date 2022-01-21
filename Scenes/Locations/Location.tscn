@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Locations/TestLocation.tres" type="Resource" id=1]
+[ext_resource path="res://Scripts/Location.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Spawners/EnemySpawner.tscn" type="PackedScene" id=3]
+
+[node name="Location" type="Node2D"]
+script = ExtResource( 2 )
+data = ExtResource( 1 )
+test_spawner = ExtResource( 3 )
