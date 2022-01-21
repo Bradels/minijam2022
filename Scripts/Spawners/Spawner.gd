@@ -5,6 +5,9 @@ class_name Spawner
 export(Resource) var data
 var location:GameLocation
 
+func _ready():
+	location = get_parent()
+
 func _spawn_at_location(position:Vector2) -> void:
 	pass
 
