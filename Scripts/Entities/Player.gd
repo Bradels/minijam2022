@@ -1,24 +1,27 @@
 extends KinematicBody2D
 
-var move_speed = 256
-var bullet_speed = 1024
-var bullet = preload("res://Scenes/Entities/Bullet.tscn")
+
+var move_speed : int = 256
+var bullet_speed : int = 1024
+var bullet : PackedScene = preload("res://Scenes/Entities/Bullet.tscn")
 
 var current_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
-var current_player = false
-var is_host = false
-onready var _nozzle = $Nozzle
-onready var _sprite = $AnimatedSprite
+var is_current : bool = false
+var is_host : bool = false
+onready var _camera : Camera2D = $Camera
+onready var _nozzle : Node2D = $Nozzle
+onready var _sprite : AnimatedSprite = $AnimatedSprite
 
 
 func _ready():
-	$Camera.current = current_player
+	_camera.current = is_current
+
 
 func _physics_process(_delta):
-	if !current_player:
+	if !is_current:
 		return
 		
 	var moving = false
@@ -52,13 +55,13 @@ func _physics_process(_delta):
 	motion = move_and_slide(motion * move_speed)
 	
 	look_at(get_global_mouse_position())
-	
-	
+
+
 puppet func poopdate(position, rotation):
-	if is_host and !current_player:
+	shitdate(position, rotation)
+	if is_host and !is_current:
 		rpc_unreliable("shitdate", position, rotation)
-	self.position = position
-	self.rotation = rotation
+
 
 puppet func shitdate(position, rotation):
 	self.position = position
@@ -66,7 +69,7 @@ puppet func shitdate(position, rotation):
 
 
 func _process(delta):
-	if current_player:
+	if is_current:
 		rpc_unreliable("poopdate", position, rotation)
 		current_time += delta
 		if (current_time < bullet_delta):
