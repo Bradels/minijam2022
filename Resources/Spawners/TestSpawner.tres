@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Spawners/SpawnerData.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Entities/Enemy.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+spawn_object = ExtResource( 2 )
+spawn_max = 50
