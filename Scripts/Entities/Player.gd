@@ -5,7 +5,7 @@ var move_speed : int = 256
 var bullet_speed : int = 1024
 var bullet : PackedScene = preload("res://Scenes/Entities/Bullet.tscn")
 
-var current_time : float = 0
+var bullet_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
@@ -14,10 +14,6 @@ var is_host : bool = false
 onready var _camera : Camera2D = $Camera
 onready var _nozzle : Node2D = $Nozzle
 onready var _sprite : AnimatedSprite = $AnimatedSprite
-
-
-func _ready():
-	_camera.current = is_current
 
 
 func _physics_process(_delta):
@@ -69,14 +65,18 @@ puppet func shitdate(position, rotation):
 
 
 func _process(delta):
+	if _camera.current != is_current:
+		_camera.current = is_current
+	
 	if is_current:
 		rpc_unreliable("poopdate", position, rotation)
-		current_time += delta
-		if (current_time < bullet_delta):
+		
+		bullet_time += delta
+		if (bullet_time < bullet_delta):
 			return
-
+	
 		if Input.is_action_pressed("fire"):
-			current_time = 0
+			bullet_time = 0
 			fire()
 
 
