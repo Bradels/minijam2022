@@ -1,0 +1,273 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=1]
+
+[node name="Main" type="Node"]
+
+[node name="Menu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Control" parent="Menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" type="Button" parent="Menu/MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -94.0
+margin_top = -229.0
+margin_right = 94.0
+margin_bottom = -179.0
+text = "Host Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinButton" type="Button" parent="Menu/MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -94.0
+margin_top = -154.0
+margin_right = 94.0
+margin_bottom = -104.0
+text = "Join Game"
+
+[node name="OptionsButton" type="Button" parent="Menu/MainMenu"]
+margin_left = 423.0
+margin_top = 222.0
+margin_right = 611.0
+margin_bottom = 272.0
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="Menu/MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -1.0
+margin_right = 100.0
+margin_bottom = 49.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostMenu" type="Control" parent="Menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="Menu/HostMenu"]
+margin_left = 306.0
+margin_top = 131.0
+margin_right = 574.0
+margin_bottom = 442.0
+
+[node name="Label" type="Label" parent="Menu/HostMenu/Panel"]
+margin_left = 106.0
+margin_top = 16.0
+margin_right = 178.0
+margin_bottom = 30.0
+text = "Host Game"
+
+[node name="Label2" type="Label" parent="Menu/HostMenu/Panel"]
+margin_left = 26.0
+margin_top = 64.0
+margin_right = 98.0
+margin_bottom = 78.0
+text = "Name:"
+
+[node name="Label3" type="Label" parent="Menu/HostMenu/Panel"]
+margin_left = 25.0
+margin_top = 96.0
+margin_right = 97.0
+margin_bottom = 110.0
+text = "Port:"
+
+[node name="Label4" type="Label" parent="Menu/HostMenu/Panel"]
+margin_left = 20.0
+margin_top = 126.0
+margin_right = 92.0
+margin_bottom = 140.0
+text = "Max Players:"
+
+[node name="PlayerName" type="LineEdit" parent="Menu/HostMenu/Panel"]
+margin_left = 81.0
+margin_top = 58.0
+margin_right = 233.0
+margin_bottom = 82.0
+
+[node name="Port" type="LineEdit" parent="Menu/HostMenu/Panel"]
+margin_left = 81.0
+margin_top = 88.0
+margin_right = 233.0
+margin_bottom = 112.0
+
+[node name="MaxPlayers" type="OptionButton" parent="Menu/HostMenu/Panel"]
+margin_left = 116.0
+margin_top = 125.0
+margin_right = 233.0
+margin_bottom = 145.0
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" type="Button" parent="Menu/HostMenu/Panel"]
+margin_left = 208.0
+margin_top = 268.0
+margin_right = 250.0
+margin_bottom = 288.0
+text = "Host"
+
+[node name="BackButton" type="Button" parent="Menu/HostMenu/Panel"]
+margin_left = 29.0
+margin_top = 269.0
+margin_right = 71.0
+margin_bottom = 289.0
+text = "Back"
+
+[node name="JoinMenu" type="Control" parent="Menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Menu/JoinMenu"]
+margin_left = 306.0
+margin_top = 131.0
+margin_right = 574.0
+margin_bottom = 442.0
+
+[node name="Label" type="Label" parent="Menu/JoinMenu/Panel"]
+margin_left = 106.0
+margin_top = 16.0
+margin_right = 178.0
+margin_bottom = 30.0
+text = "Join Game"
+
+[node name="Label2" type="Label" parent="Menu/JoinMenu/Panel"]
+margin_left = 26.0
+margin_top = 64.0
+margin_right = 98.0
+margin_bottom = 78.0
+text = "Name:"
+
+[node name="Label3" type="Label" parent="Menu/JoinMenu/Panel"]
+margin_left = 25.0
+margin_top = 130.0
+margin_right = 97.0
+margin_bottom = 144.0
+text = "Port:"
+
+[node name="Label4" type="Label" parent="Menu/JoinMenu/Panel"]
+margin_left = 20.0
+margin_top = 95.0
+margin_right = 92.0
+margin_bottom = 109.0
+text = "Host Ip:"
+
+[node name="PlayerName" type="LineEdit" parent="Menu/JoinMenu/Panel"]
+margin_left = 81.0
+margin_top = 58.0
+margin_right = 233.0
+margin_bottom = 82.0
+
+[node name="Ip" type="LineEdit" parent="Menu/JoinMenu/Panel"]
+margin_left = 81.0
+margin_top = 90.0
+margin_right = 233.0
+margin_bottom = 114.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Port" type="LineEdit" parent="Menu/JoinMenu/Panel"]
+margin_left = 81.0
+margin_top = 122.0
+margin_right = 233.0
+margin_bottom = 146.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinButton" type="Button" parent="Menu/JoinMenu/Panel"]
+margin_left = 208.0
+margin_top = 268.0
+margin_right = 250.0
+margin_bottom = 288.0
+text = "Join"
+
+[node name="BackButton" type="Button" parent="Menu/JoinMenu/Panel"]
+margin_left = 29.0
+margin_top = 269.0
+margin_right = 71.0
+margin_bottom = 289.0
+text = "Back"
+
+[node name="LobbyMenu" type="Control" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Menu/LobbyMenu"]
+margin_left = 338.0
+margin_top = 106.0
+margin_right = 606.0
+margin_bottom = 417.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/LobbyMenu/Panel"]
+margin_left = 106.0
+margin_top = 16.0
+margin_right = 178.0
+margin_bottom = 30.0
+text = "Lobby"
+
+[node name="ReadyButton" type="Button" parent="Menu/LobbyMenu/Panel"]
+margin_left = 208.0
+margin_top = 268.0
+margin_right = 250.0
+margin_bottom = 288.0
+text = "Ready"
+
+[node name="LeaveButton" type="Button" parent="Menu/LobbyMenu/Panel"]
+margin_left = 22.0
+margin_top = 268.0
+margin_right = 71.0
+margin_bottom = 288.0
+text = "Leave"
+
+[node name="PlayerList" type="ItemList" parent="Menu/LobbyMenu/Panel"]
+margin_left = 24.0
+margin_top = 38.0
+margin_right = 246.0
+margin_bottom = 253.0
+
+[connection signal="pressed" from="Menu/MainMenu/HostButton" to="Menu" method="_on_MainMenu_HostButton_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/JoinButton" to="Menu" method="_on_MainMenu_JoinButton_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/OptionsButton" to="Menu" method="_on_MainMenu_OptionsButton_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/ExitButton" to="Menu" method="_on_MainMenu_ExitButton_pressed"]
