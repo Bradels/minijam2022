@@ -7,7 +7,7 @@
 extents = Vector2( 12, 12 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
+extents = Vector2( 12, 12 )
 
 [node name="World" type="Node2D"]
 
@@ -24,4 +24,18 @@ texture = ExtResource( 2 )
 [node name="Hitbox" type="Area2D" parent="Player"]
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Player/Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Enemy"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="Enemy"]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Enemy/Hitbox"]
 shape = SubResource( 2 )
