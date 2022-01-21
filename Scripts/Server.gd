@@ -41,6 +41,10 @@ func join_server(ip, port):
 	
 	network.connect("connection_failed", self, "_connection_failed")
 	network.connect("connection_succeeded", self, "_connection_succeeded")
+	
+
+func get_player_ids():
+	return player_static_data.keys()
 
 
 func _peer_connected(player_id):

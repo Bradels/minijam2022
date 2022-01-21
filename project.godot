@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="mini-jam-jan-2022"
-run/main_scene="res://Scenes/TestWorld.tscn"
+run/main_scene="res://Scenes/Player.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -10,4 +10,3 @@ func _physics_process(_delta):
 	var spaceship = get_parent().get_node_or_null("Spaceship")
 	if (spaceship):
 		look_at(spaceship.global_position)
-

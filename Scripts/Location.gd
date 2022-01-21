@@ -2,18 +2,14 @@ extends Node2D
 
 class_name GameLocation
 
-export(Resource) var data
-export(PackedScene) var test_spawner
+export(int) var location_height:int = 1000
+export(int) var location_length:int = 1000
 
 func _ready():
-	#data = LocationData.new()
-	data.add_spawnable(test_spawner)
-	for spawner in data.spawners:
-		var n_spawner = spawner.instance()
-		n_spawner.set_location(self)
-		add_child(n_spawner)
+	pass
 
 func get_random_position() -> Vector2:
-	var height = randi() % data.get_height()
-	var length = randi() % data.get_length()
+	var height = randi() % location_height
+	var length = randi() % location_length
 	return Vector2(length,height)
+
