@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var move_speed = 256
 var bullet_speed = 1024
-var bullet = preload("res://Scenes/Bullet.tscn")
+var bullet = preload("res://Scenes/Entities/Bullet.tscn")
 
 var current_time : float = 0
 var fire_rate : float = 2
