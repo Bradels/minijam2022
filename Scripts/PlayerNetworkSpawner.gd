@@ -26,9 +26,11 @@ func spawn_players(ids):
 		
 		new_player.name = str(id)
 		var player_id = get_tree().get_network_unique_id()
-		new_player.set_network_master(1)
+		if player_id == 1:
+			new_player.is_host = true
+			new_player.set_network_master(id)
+		else:
+			new_player.set_network_master(1)
 		if id == player_id:
 			new_player.current_player = true
 			new_player.set_network_master(id)
-			
-		add_child(new_player)

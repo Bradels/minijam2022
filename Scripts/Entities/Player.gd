@@ -9,7 +9,7 @@ var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
 var current_player = false
-
+var is_host = false
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
@@ -54,15 +54,20 @@ func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 	
 	
-remotesync func poopdate(position, rotation):
+puppet func poopdate(position, rotation):
+	if is_host and !current_player:
+		rpc_unreliable("shitdate", position, rotation)
+	self.position = position
+	self.rotation = rotation
+
+puppet func shitdate(position, rotation):
 	self.position = position
 	self.rotation = rotation
 
 
 func _process(delta):
-	rpc_unreliable("poopdate", position, rotation)
-	
 	if current_player:
+		rpc_unreliable("poopdate", position, rotation)
 		current_time += delta
 		if (current_time < bullet_delta):
 			return
@@ -72,7 +77,7 @@ func _process(delta):
 			fire()
 
 
-func fire():
+puppetsync func fire():
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = _nozzle.global_position
 	bullet_instance.rotation = rotation
