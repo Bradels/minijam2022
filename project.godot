@@ -14,10 +14,9 @@ config/name="mini-jam-jan-2022"
 run/main_scene="res://Scenes/Player.tscn"
 config/icon="res://icon.png"
 
-<<<<<<< HEAD
 [autoload]
 
-Server="*res://scripts/Server.gd"
+Server="*res://Scripts/Server.gd"
 =======
 [input]
 
@@ -45,7 +44,6 @@ right={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
->>>>>>> 93c06654733603a6facf92a73f3f99f13ca7028e
 
 [physics]
 
