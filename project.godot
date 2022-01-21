@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Spawner",
 "language": "GDScript",
-"path": "res://Scripts/Spawner.gd"
+"path": "res://Scripts/Spawners/Spawner.gd"
 }, {
 "base": "Resource",
 "class": "SpawnerData",

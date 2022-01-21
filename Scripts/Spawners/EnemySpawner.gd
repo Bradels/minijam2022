@@ -1,4 +1,4 @@
-extends "res://Scripts/Spawners/Spawner.gd"
+extends "Spawner.gd"
 
 var spawned = 0
 
