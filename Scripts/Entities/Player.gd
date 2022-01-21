@@ -8,10 +8,19 @@ var current_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
+var current_player = false
+
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
+
+func _ready():
+	$Camera.current = current_player
+
 func _physics_process(_delta):
+	if !current_player:
+		return
+		
 	var moving = false
 	var motion = Vector2()
 	motion.x = 0
@@ -43,16 +52,24 @@ func _physics_process(_delta):
 	motion = move_and_slide(motion * move_speed)
 	
 	look_at(get_global_mouse_position())
+	
+	
+remotesync func poopdate(position, rotation):
+	self.position = position
+	self.rotation = rotation
 
 
 func _process(delta):
-	current_time += delta
-	if (current_time < bullet_delta):
-		return
+	rpc_unreliable("poopdate", position, rotation)
+	
+	if current_player:
+		current_time += delta
+		if (current_time < bullet_delta):
+			return
 
-	if Input.is_action_pressed("fire"):
-		current_time = 0
-		fire()
+		if Input.is_action_pressed("fire"):
+			current_time = 0
+			fire()
 
 
 func fire():

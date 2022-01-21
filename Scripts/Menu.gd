@@ -62,7 +62,9 @@ func _on_JoinMenu_BackButton_pressed():
 
 # Lobby Menu functions
 func _on_LobbyMenu_ReadyButton_pressed():
-	pass # Replace with function body.
+	var scene = load("res://Scenes/Locations/Location.tscn")
+	get_node("/root/Main").add_child(scene.instance())
+	visible = false
 
 
 func _on_LobbyMenu_LeaveButton_pressed():
