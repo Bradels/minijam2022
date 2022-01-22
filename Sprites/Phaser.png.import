@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserPulse.png-9b2d954ce2c952b7aa46ee09f275cef9.stex"
+path="res://.import/Phaser.png-2cd08925638d6d4ddd9da583c0d8649e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/LaserPulse.png"
-dest_files=[ "res://.import/LaserPulse.png-9b2d954ce2c952b7aa46ee09f275cef9.stex" ]
+source_file="res://Sprites/Phaser.png"
+dest_files=[ "res://.import/Phaser.png-2cd08925638d6d4ddd9da583c0d8649e.stex" ]
 
 [params]
 

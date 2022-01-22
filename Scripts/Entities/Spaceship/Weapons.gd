@@ -1,6 +1,6 @@
 extends Node2D
 
-var primary_projectile : PackedScene = preload("res://Scenes/Entities/Projectiles/LaserPulse.tscn")
+var primary_projectile : PackedScene = preload("res://Scenes/Entities/Projectiles/Phaser.tscn")
 var primary_left
 var primary_right
 var primary_elapsed_left : float = 0
@@ -10,7 +10,7 @@ var primary_rate : float = 2
 var primary_speed : int = 768
 onready var primary_delta : float = 1 / primary_rate
 
-var secondary_projectile : PackedScene = preload("res://Scenes/Entities/Projectiles/LaserRail.tscn")
+var secondary_projectile : PackedScene = preload("res://Scenes/Entities/Projectiles/Rail.tscn")
 var secondary_left
 var secondary_right
 var secondary_elapsed_left : float = 0
@@ -68,11 +68,11 @@ func fire_secondary_side(side):
 
 
 func fire_projectile(projectile, source, speed):
-	var ship = get_parent()
 	var instance = projectile.instance()
+	var rotation = get_parent().rotation
 	instance.position = source
-	instance.rotation = ship.rotation
-	instance.velocity = Vector2(speed, 0).rotated(ship.rotation)
+	instance.rotation = rotation
+	instance.velocity = Vector2(speed, 0).rotated(rotation)
 	get_tree().get_root().call_deferred('add_child', instance)
 
 

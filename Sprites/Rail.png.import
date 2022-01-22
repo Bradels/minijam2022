@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserRail.png-e1582c242a0dfde47f41c39ae88c7bb7.stex"
+path="res://.import/Rail.png-bdc490dddfe1e114d10cbc486b14b02d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/LaserRail.png"
-dest_files=[ "res://.import/LaserRail.png-e1582c242a0dfde47f41c39ae88c7bb7.stex" ]
+source_file="res://Sprites/Rail.png"
+dest_files=[ "res://.import/Rail.png-bdc490dddfe1e114d10cbc486b14b02d.stex" ]
 
 [params]
 
