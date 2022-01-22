@@ -11,20 +11,20 @@
 [node name="Location" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
+[node name="Sprite" type="Sprite" parent="Background"]
 texture = ExtResource( 7 )
 
-[node name="Sprite2" type="Sprite" parent="Node2D"]
+[node name="Sprite2" type="Sprite" parent="Background"]
 position = Vector2( 736, 0 )
 texture = ExtResource( 7 )
 
-[node name="Sprite3" type="Sprite" parent="Node2D"]
+[node name="Sprite3" type="Sprite" parent="Background"]
 position = Vector2( 0, 736 )
 texture = ExtResource( 7 )
 
-[node name="Sprite4" type="Sprite" parent="Node2D"]
+[node name="Sprite4" type="Sprite" parent="Background"]
 position = Vector2( 736, 736 )
 texture = ExtResource( 7 )
 
