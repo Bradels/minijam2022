@@ -14,6 +14,7 @@ func _process(delta):
 	if !sound_byte.playing && !visible:
 		queue_free()
 
+
 func _on_Hitbox_body_entered(body):
 	if "Enemy" in body.name:
 		visible = false
