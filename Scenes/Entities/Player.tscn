@@ -35,8 +35,3 @@ shape = SubResource( 12 )
 shape = SubResource( 13 )
 
 [node name="Network" parent="." instance=ExtResource( 3 )]
-
-[node name="Pew" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
-[connection signal="entity_updated" from="." to="Network" method="_on_Player_entity_updated"]

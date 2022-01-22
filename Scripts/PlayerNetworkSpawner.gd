@@ -29,5 +29,3 @@ func spawn_players(ids):
 		if id == player_id:
 			new_player.is_active_player = true
 			NetworkManager.local_player = new_player
-		new_player.connect("player_updated",NetworkManager,"_on_entity_updated")
-		new_player.connect("entity_spawned",NetworkManager,"_on_entity_spawned")

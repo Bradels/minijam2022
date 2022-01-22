@@ -3,7 +3,8 @@ extends KinematicBody2D
 
 signal moved(position, rotation)
 signal entity_updated(props)
-signal entity_spawned(props)
+signal entity_creates_entity(props)
+signal entity_created(props)
 
 var move_speed : int = 256
 var bullet_speed : int = 1024
@@ -61,11 +62,6 @@ func _physics_process(_delta):
 		motion = move_and_slide(motion * move_speed)
 
 		look_at(get_global_mouse_position())
-		
-		if motion.length() > 0:
-			emit_signal("entity_updated",{
-				"position":position,
-				"rotation":rotation})
 
 
 func get_networked_values():
@@ -88,6 +84,9 @@ remote func network_entity_updated(props):
 
 func _process(delta):
 	if is_active_player:
+		emit_signal("entity_updated",{
+				"position":position,
+				"rotation":rotation})
 		bullet_time += delta
 		if (bullet_time < bullet_delta):
 			return
@@ -106,8 +105,8 @@ func fire():
 		"position": bullet_instance.position,
 		"rotation": bullet_instance.rotation,
 		"velocity": bullet_instance.velocity,
-		#"path_to_scene": bullet_instance.path_to_scene
+		"path_to_scene": bullet_instance.path_to_scene
 	}
-	emit_signal("entity_spawned",self,bullet_props)
+	emit_signal("entity_creates_entity",bullet_props)
 	get_tree().get_root().call_deferred('add_child', bullet_instance)
 	$Pew.play(0.0)
