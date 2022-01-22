@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Resources/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Entities/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Entities/Player/Network.gd" type="Script" id=3]
 
@@ -15,6 +16,8 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 7, 0 )
 rotation = -1.5708
+frames = ExtResource( 1 )
+frame = 6
 playing = true
 
 [node name="Camera" type="Camera2D" parent="."]

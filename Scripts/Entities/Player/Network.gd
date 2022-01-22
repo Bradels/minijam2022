@@ -7,6 +7,8 @@ var rpc_ready = false
 
 func _ready():
 	player = get_parent()
+	if !get_tree().has_network_peer():
+		player.is_active_player = true
 
 
 func _process(_delta):

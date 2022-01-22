@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 
 signal moved(position, rotation)
+signal player_updated(props)
 
 var move_speed : int = 256
 var bullet_speed : int = 1024
@@ -15,8 +16,12 @@ var is_active_player = false
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
+var networked_props = ["position","rotation"]
+
 
 func _ready():
+	if !get_tree().has_network_peer():
+		is_active_player = true
 	$Camera.current = is_active_player
 	
 
@@ -55,16 +60,23 @@ func _physics_process(_delta):
 		look_at(get_global_mouse_position())
 		
 		if motion.length() > 0:
-			NetworkManager.emit_signal("entity_moved", self)
+			emit_signal("player_updated",get_networked_values())
 
 
-remote func network_entity_moved(position, rotation):
+func get_networked_values():
+	var networked_values = {}
+	for prop in networked_props:
+		networked_values[prop] = self[prop]
+	return networked_props
+
+remote func network_entity_updated(props):
 	if !is_active_player:
-		self.position = position
-		self.rotation = rotation
+		for prop in props:
+			self[prop] = props[prop]
 	
 	if get_tree().get_rpc_sender_id() != 1:
-		rpc_unreliable("move_player", position, rotation)
+		rpc_unreliable("network_entity_moved", props)
+
 
 
 func _process(delta):
