@@ -1,7 +1,8 @@
 extends Node2D
 
-var path_to_scene = "res://Scenes/Entities/Bullet.tscn"
+
 var velocity = Vector2()
+
 
 func _process(delta):
 	position += velocity * delta

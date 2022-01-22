@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Entities.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Entities/Bullet.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Projectile.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -49,5 +49,4 @@ frames = SubResource( 7 )
 rotation = -1.5708
 shape = SubResource( 8 )
 
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

@@ -7,13 +7,14 @@ signal entity_spawned(player,props)
 
 var move_speed : int = 256
 var bullet_speed : int = 1024
-var bullet : PackedScene = preload("res://Scenes/Entities/Bullet.tscn")
+var bullet : PackedScene = preload("res://Scenes/Entities/Projectiles/Bullet.tscn")
 
 var bullet_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
 var is_active_player = false
+onready var _camera = $Camera
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
@@ -23,8 +24,8 @@ var networked_props = ["position","rotation"]
 func _ready():
 	if !get_tree().has_network_peer():
 		is_active_player = true
-	$Camera.current = is_active_player
-	
+	_camera.current = is_active_player
+
 
 func _physics_process(_delta):
 	if is_active_player:
@@ -88,7 +89,7 @@ func _process(delta):
 		if (bullet_time < bullet_delta):
 			return
 	
-		if Input.is_action_pressed("fire"):
+		if Input.is_action_pressed("pawn_fire"):
 			bullet_time = 0
 			fire()
 
