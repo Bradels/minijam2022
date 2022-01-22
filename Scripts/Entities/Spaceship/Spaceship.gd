@@ -3,17 +3,21 @@ extends KinematicBody2D
 
 onready var thrusters = $Thrusters
 onready var weapons = $Weapons
+onready var camera = $Camera
+onready var speedometer = $Camera/Canvas/HUD/Speed
 
 var acceleration : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
 var max_velocity : int = 256
 var thrust : int = 256
 
+export var is_active : bool = false
+
 
 func _physics_process(delta):
 	thrusters.off()
 	acceleration = Vector2.ZERO
-		
+	
 	if Input.is_action_pressed('ship_rotate_left'):
 		rotation -= thrust * delta * 0.01
 		thrusters.rotate_left()
@@ -41,6 +45,7 @@ func _physics_process(delta):
 	acceleration = acceleration.rotated(rotation)
 	velocity += acceleration * delta
 	position += move_and_slide(velocity * delta)
+	speedometer.text = 'Speed: ' + str(int(velocity.length()))
 
 
 func _process(delta):
@@ -51,3 +56,11 @@ func _process(delta):
 	
 	if Input.is_action_pressed('ship_fire_secondary'):
 		weapons.fire_secondary()
+
+
+func _unhandled_input(event):
+	if (event.is_action_pressed('zoom_in')):
+		camera.zoom_in()
+		
+	if (event.is_action_pressed('zoom_out')):
+		camera.zoom_out()
