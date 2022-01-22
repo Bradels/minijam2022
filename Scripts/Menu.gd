@@ -92,8 +92,9 @@ func _on_JoinMenu_BackButton_pressed():
 
 # Lobby Menu functions
 func _on_LobbyMenu_ReadyButton_pressed():
-	var scene = load("res://Scenes/Locations/Location.tscn")
-	get_node("/root/Main").add_child(scene.instance())
+	$MenuMusic.stop()
+	var scene = load("res://Levels/MultiplayerTest.tscn")
+	root.change_scene(scene.instance())
 	change_menu("")
 	$MenuMusic.stop()
 	is_in_game = true

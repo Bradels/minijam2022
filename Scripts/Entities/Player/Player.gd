@@ -14,22 +14,25 @@ var bullet_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
-var is_active_player = false
 onready var _camera = $Camera
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
+var is_current = false
+var is_multiplayer = false
+
+var id = 0
 var networked_props = ["position","rotation"]
 
 
 func _ready():
 	if !get_tree().has_network_peer():
-		is_active_player = true
-	_camera.current = is_active_player
+		is_current = true
+	_camera.current = is_current
 
 
 func _physics_process(_delta):
-	if is_active_player:
+	if is_current:
 		var moving = false
 		var motion = Vector2()
 		motion.x = 0
@@ -70,7 +73,7 @@ func get_networked_values():
 	return networked_values
 
 remote func network_entity_updated(props):
-	if !is_active_player:
+	if !is_current:
 		for prop in props:
 			print("print here for success")
 			self[prop] = props[prop]
@@ -82,10 +85,11 @@ remote func network_entity_updated(props):
 
 
 func _process(delta):
-	if is_active_player:
+	if is_current:
 		emit_signal("entity_updated",{
-				"position":position,
-				"rotation":rotation})
+			"position": position,
+			"rotation": rotation
+		})
 		bullet_time += delta
 		if (bullet_time < bullet_delta):
 			return

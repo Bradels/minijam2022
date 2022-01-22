@@ -27,5 +27,5 @@ func spawn_players(ids):
 		new_player.name = str(id)
 		var player_id = get_tree().get_network_unique_id()
 		if id == player_id:
-			new_player.is_active_player = true
+			new_player.is_current = true
 			NetworkManager.local_player = new_player
