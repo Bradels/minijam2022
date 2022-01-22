@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/Textures/Starfield.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Audio/ButtonHover.mp3" type="AudioStream" id=4]
 [ext_resource path="res://Resources/Fonts/hemi_head/hemi head bd it.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Resources/Audio/MenuMusic.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Audio/countdown-to-destruction.mp3" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 69
@@ -123,6 +123,7 @@ __meta__ = {
 }
 
 [node name="HostMenu" type="Control" parent="CanvasLayer/Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

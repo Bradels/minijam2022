@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/take-a-deep-breath.mp3-cd1ca2f8e9886e17fcc300b468a1a618.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/take-a-deep-breath.mp3"
+dest_files=[ "res://.import/take-a-deep-breath.mp3-cd1ca2f8e9886e17fcc300b468a1a618.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

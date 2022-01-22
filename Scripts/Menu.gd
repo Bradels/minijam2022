@@ -66,6 +66,7 @@ func _on_LobbyMenu_ReadyButton_pressed():
 	var scene = load("res://Scenes/Locations/Location.tscn")
 	get_node("/root/Main").add_child(scene.instance())
 	visible = false
+	$MenuMusic.stop()
 
 
 func _on_LobbyMenu_LeaveButton_pressed():

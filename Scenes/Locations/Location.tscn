@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/PlayerNetworkSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Location.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Spawners/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Audio/take-a-deep-breath.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Resources/Audio/electronica-punch.mp3" type="AudioStream" id=6]
 
 [node name="Location" type="Node2D"]
 script = ExtResource( 2 )
@@ -23,3 +25,34 @@ position = Vector2( 37, -93 )
 
 [node name="Player3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 118, 26 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 890.0
+margin_top = 543.0
+margin_right = 991.0
+margin_bottom = 563.0
+text = "Normal Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+margin_left = 894.0
+margin_top = 571.0
+margin_right = 995.0
+margin_bottom = 591.0
+text = "Battle Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NormalMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_NormalMusic_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_BattleMusic_pressed"]
