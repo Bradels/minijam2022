@@ -1,7 +1,10 @@
 extends Control
 
+
+onready var root = get_node('/root/Main')
 var title_scale_speed = 0.0001
 var title_scale_dir = 1
+
 
 func _ready():
 	($ButtonHover.stream as AudioStreamMP3).loop = false
@@ -10,7 +13,7 @@ func _ready():
 	Server.connect("connection_successful", self, "_on_connection_successful")
 	
 	change_menu("MainMenu")
-	
+
 
 func _process(delta):
 	$Planet.rect_position.x += 0.05
@@ -22,14 +25,16 @@ func _process(delta):
 	if $Title.rect_scale.x < 1.0:
 		title_scale_dir = 1
 		$Title.rect_scale = Vector2(1.0, 1.0)
-	
+
+
 func change_menu(menu_name):
 	$MainMenu.visible = false
 	$HostMenu.visible = false
 	$JoinMenu.visible = false
 	$LobbyMenu.visible = false
 	get_node(menu_name).visible = true
-	
+
+
  # Main Menu functions
 func _on_MainMenu_HostButton_pressed():
 	change_menu("HostMenu")
@@ -77,15 +82,16 @@ func _on_JoinMenu_BackButton_pressed():
 
 # Lobby Menu functions
 func _on_LobbyMenu_ReadyButton_pressed():
-	var scene = load("res://Scenes/Locations/Location.tscn")
-	get_node("/root/Main").add_child(scene.instance())
-	visible = false
 	$MenuMusic.stop()
+	var scene = load("res://Scenes/Locations/Location.tscn")
+	root.change_scene(scene.instance())
+	visible = false
 
 
 func _on_LobbyMenu_LeaveButton_pressed():
 	Server.close_server()
 	change_menu("MainMenu")
+
 
 func update_lobby_player_list():
 	$LobbyMenu/Panel/PlayerList.clear()
@@ -95,11 +101,11 @@ func update_lobby_player_list():
 
 func _on_player_connected():
 	update_lobby_player_list()
-	
-	
+
+
 func _on_player_disconnected():
 	update_lobby_player_list()
-	
+
 
 func _on_connection_successful():
 	var player_name = $JoinMenu/Panel/PlayerName.text
