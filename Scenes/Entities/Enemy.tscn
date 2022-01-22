@@ -276,7 +276,6 @@ shape = SubResource( 22 )
 rotation = -1.5708
 frames = SubResource( 23 )
 animation = "claw_attack"
-frame = 2
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]

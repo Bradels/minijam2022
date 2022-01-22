@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 
 signal moved(position, rotation)
-signal player_updated(props)
+signal player_updated(player,props)
+signal entity_spawned(player,props)
 
 var move_speed : int = 256
 var bullet_speed : int = 1024
@@ -60,7 +61,7 @@ func _physics_process(_delta):
 		look_at(get_global_mouse_position())
 		
 		if motion.length() > 0:
-			emit_signal("player_updated",get_networked_values())
+			emit_signal("player_updated",self,get_networked_values())
 
 
 func get_networked_values():
@@ -72,6 +73,7 @@ func get_networked_values():
 remote func network_entity_updated(props):
 	if !is_active_player:
 		for prop in props:
+			print("print here for success")
 			self[prop] = props[prop]
 	
 	if get_tree().get_rpc_sender_id() != 1:
@@ -79,9 +81,8 @@ remote func network_entity_updated(props):
 
 
 
+
 func _process(delta):
-	$Camera.current = is_active_player
-	
 	if is_active_player:
 		bullet_time += delta
 		if (bullet_time < bullet_delta):
@@ -97,4 +98,5 @@ func fire():
 	bullet_instance.position = _nozzle.global_position
 	bullet_instance.rotation = rotation
 	bullet_instance.velocity = Vector2(bullet_speed, 0).rotated(rotation)
+	emit_signal("entity_spawned",self,bullet)
 	get_tree().get_root().call_deferred('add_child', bullet_instance)

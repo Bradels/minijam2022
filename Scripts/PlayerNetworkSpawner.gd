@@ -28,4 +28,6 @@ func spawn_players(ids):
 		var player_id = get_tree().get_network_unique_id()
 		if id == player_id:
 			new_player.is_active_player = true
-		player.connect("player_updated",NetworkManager,"_on_entity_updated")
+			NetworkManager.local_player = new_player
+		new_player.connect("player_updated",NetworkManager,"_on_entity_updated")
+		new_player.connect("entity_spawned",NetworkManager,"_on_entity_spawned")

@@ -3,14 +3,48 @@ extends Node
 signal entity_moved
 
 var is_host
+var local_player
 
 func _ready():
-	is_host = (get_tree().get_network_unique_id() == 1)
+	var id = get_tree().get_network_unique_id()
+	is_host = (id == 1 || id == 0)
 	connect("entity_moved", self, "_on_entity_moved")
 	
 
-func _on_entity_updated(entity):
+func _on_entity_updated(entity,props):
 	if is_host:
-		entity.rpc_unreliable("network_entity_moved", entity.position, entity.rotation)
+		rpc_unreliable("network_entity_updated",entity, props)
 	else:
-		entity.rpc_unreliable_id(1, "network_entity_moved", entity.position, entity.rotation)
+		rpc_unreliable_id(1,"network_entity_updated",entity,props)
+
+remote func network_entity_updated(entity,props):
+	if !entity == local_player:
+		for prop in props:
+			entity[prop] = props[prop]
+	
+	if get_tree().get_rpc_sender_id() != 1:
+		rpc_unreliable("network_entity_updated",entity,props)
+
+func _on_entity_spawned(entity_owner,props):
+	if is_host:
+		rpc_unreliable("spawn_entity",props)
+	else:
+		rpc_unreliable_id(1,"spawn_entity",props)
+
+remote func spawn_entity(entity):
+	if get_tree().get_rpc_sender_id() != 1:
+		rpc_unreliable("spawn_entity", entity)
+		
+	if get_tree().get_rpc_sender_id() == 1:
+		var position = entity.position
+		var rotation = entity.rotation
+		var velocity = entity.velocity
+		var parent = entity.get_parent()
+		var path_to_scene = entity.path_to_scene
+		var scene = load(path_to_scene)
+		var instance = scene.instance()
+		instance.position = position
+		instance.rotation = rotation
+		instance.velocity = velocity
+		parent.add_child(instance)
+		
