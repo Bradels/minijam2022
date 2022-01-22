@@ -22,6 +22,7 @@ var networked_props = ["position","rotation"]
 
 
 func _ready():
+	($Pew.stream as AudioStreamMP3).loop = false
 	if !get_tree().has_network_peer():
 		is_active_player = true
 	_camera.current = is_active_player
@@ -109,3 +110,4 @@ func fire():
 	}
 	emit_signal("entity_spawned",self,bullet_props)
 	get_tree().get_root().call_deferred('add_child', bullet_instance)
+	$Pew.play(0.0)

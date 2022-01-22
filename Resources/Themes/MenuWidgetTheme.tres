@@ -1,3 +1,29 @@
-[gd_resource type="Theme" format=2]
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[ext_resource path="res://Resources/Fonts/hemi_head/hemi head bd it.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/Textures/gui.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 1310.75, 1652.99, 324.358, 44.3663 )
+margin_left = 3.85537
+margin_right = 3.14684
+margin_top = 3.2128
+margin_bottom = 3.98388
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 2 )
+region_rect = Rect2( 30.5525, 31.2982, 1578.69, 873.027 )
+margin_left = 37.3795
+margin_right = 37.2701
+margin_top = 29.9001
+margin_bottom = 29.2329
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
 
 [resource]
+default_font = SubResource( 3 )
+Label/colors/font_color = Color( 0.576471, 0.733333, 0.776471, 1 )
+LineEdit/styles/normal = SubResource( 1 )
+Panel/styles/panel = SubResource( 2 )
