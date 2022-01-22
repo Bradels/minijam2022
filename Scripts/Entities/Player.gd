@@ -25,19 +25,19 @@ func _physics_process(_delta):
 	motion.x = 0
 	motion.y = 0
 
-	if Input.is_action_pressed('up'):
+	if Input.is_action_pressed('pawn_up'):
 		motion.y = -1
 		moving = true
 
-	if Input.is_action_pressed('down'):
+	if Input.is_action_pressed('pawn_down'):
 		motion.y = 1
 		moving = true
 		
-	if Input.is_action_pressed('left'):
+	if Input.is_action_pressed('pawn_left'):
 		motion.x = -1
 		moving = true
 		
-	if Input.is_action_pressed('right'):
+	if Input.is_action_pressed('pawn_right'):
 		motion.x = 1
 		moving = true
 	
