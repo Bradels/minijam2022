@@ -1,8 +1,24 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Themes/MenuTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Resources/Textures/Starfield.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Audio/ButtonHover.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Resources/Fonts/hemi_head/hemi head bd it.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Resources/Audio/MenuMusic.mp3" type="AudioStream" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 69
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+Label/colors/font_color = Color( 0.729412, 0.784314, 0.784314, 1 )
 
 [node name="Main" type="Node"]
+__meta__ = {
+"_edit_vertical_guides_": [ 1000.0 ]
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -14,67 +30,104 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Menu"]
+margin_top = -209.0
+margin_right = 1024.0
+margin_bottom = 815.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu"]
+margin_left = 104.0
+margin_top = 59.0
+margin_right = 745.0
+margin_bottom = 143.0
+theme = SubResource( 2 )
+text = "Space: But Smaller"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
+stream = ExtResource( 4 )
+volume_db = -20.0
+
 [node name="MainMenu" type="Control" parent="CanvasLayer/Menu"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HostButton" type="Button" parent="CanvasLayer/Menu/MainMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -94.0
-margin_top = -229.0
-margin_right = 94.0
-margin_bottom = -179.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -282.0
+margin_top = -320.0
+margin_right = -104.0
+margin_bottom = -270.0
 text = "Host Game"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/Menu/MainMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -94.0
-margin_top = -154.0
-margin_right = 94.0
-margin_bottom = -104.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -275.0
+margin_top = -261.0
+margin_right = -104.0
+margin_bottom = -211.0
 text = "Join Game"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer/Menu/MainMenu"]
-margin_left = 423.0
-margin_top = 222.0
-margin_right = 611.0
-margin_bottom = 272.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -236.0
+margin_top = -200.0
+margin_right = -104.0
+margin_bottom = -150.0
 text = "Options"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Menu/MainMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -88.0
-margin_top = -1.0
-margin_right = 100.0
-margin_bottom = 49.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -141.0
+margin_right = -105.0
+margin_bottom = -91.0
 text = "Exit"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HostMenu" type="Control" parent="CanvasLayer/Menu"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Menu/HostMenu"]
 margin_left = 306.0
@@ -149,6 +202,7 @@ margin_bottom = 289.0
 text = "Back"
 
 [node name="JoinMenu" type="Control" parent="CanvasLayer/Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -283,9 +337,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MenuMusic" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
+stream = ExtResource( 6 )
+autoplay = true
+
+[connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_MainMenu_HostButton_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/JoinButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/JoinButton" to="CanvasLayer/Menu" method="_on_MainMenu_JoinButton_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/OptionsButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/OptionsButton" to="CanvasLayer/Menu" method="_on_MainMenu_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/ExitButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/ExitButton" to="CanvasLayer/Menu" method="_on_MainMenu_ExitButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/HostMenu/Panel/HostButton" to="CanvasLayer/Menu" method="_on_HostMenu_HostButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/HostMenu/Panel/BackButton" to="CanvasLayer/Menu" method="_on_HostMenu_BackButton_pressed"]

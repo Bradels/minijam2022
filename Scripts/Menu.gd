@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready():
+	($ButtonHover.stream as AudioStreamMP3).loop = false
 	Server.connect("player_connected", self, "_on_player_connected")
 	Server.connect("player_disconnected", self, "_on_player_disconnected")
 	Server.connect("connection_successful", self, "_on_connection_successful")
@@ -89,3 +90,7 @@ func _on_connection_successful():
 	var player_name = $JoinMenu/Panel/PlayerName.text
 	Server.set_player_static_data({"n": player_name})
 	change_menu("LobbyMenu")
+
+
+func _on_button_hover():
+	$ButtonHover.play(0.0)
