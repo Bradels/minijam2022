@@ -9,8 +9,7 @@ func _ready():
 	
 
 func _on_entity_moved(entity):
-	pass
-	#if is_host:
-	#	rpc_unreliable("move_player", position, rotation)
-	#else:
-	#	rpc_unreliable_id(1, "move_player", position, rotation)
+	if is_host:
+		entity.rpc_unreliable("network_entity_moved", entity.position, entity.rotation)
+	else:
+		entity.rpc_unreliable_id(1, "network_entity_moved", entity.position, entity.rotation)

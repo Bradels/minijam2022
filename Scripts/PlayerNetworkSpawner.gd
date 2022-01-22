@@ -30,13 +30,7 @@ func spawn_players(ids):
 			new_player.is_host = true
 			new_player.set_network_master(id)
 		else:
-<<<<<<< HEAD
-			new_player.set_network_master(id)
-		if id == player_id:
-			new_player.current_player = true
-=======
 			new_player.set_network_master(1)
 		if id == player_id:
 			new_player.is_current = true
->>>>>>> 754daa72c0233f36d7cee012ba44e06a39229f8a
 			new_player.set_network_master(id)
