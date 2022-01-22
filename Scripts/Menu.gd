@@ -1,5 +1,7 @@
 extends Control
 
+var title_scale_speed = 0.0001
+var title_scale_dir = 1
 
 func _ready():
 	($ButtonHover.stream as AudioStreamMP3).loop = false
@@ -8,6 +10,18 @@ func _ready():
 	Server.connect("connection_successful", self, "_on_connection_successful")
 	
 	change_menu("MainMenu")
+	
+
+func _process(delta):
+	$Planet.rect_position.x += 0.05
+	$Title.rect_scale += Vector2(title_scale_speed * title_scale_dir, title_scale_speed * title_scale_dir)
+	if $Title.rect_scale.x > 1.2:
+		title_scale_dir = -1
+		$Title.rect_scale = Vector2(1.2, 1.2)
+	
+	if $Title.rect_scale.x < 1.0:
+		title_scale_dir = 1
+		$Title.rect_scale = Vector2(1.0, 1.0)
 	
 func change_menu(menu_name):
 	$MainMenu.visible = false

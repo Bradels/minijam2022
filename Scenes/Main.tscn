@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Themes/MenuTheme.tres" type="Theme" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Resources/Fonts/hemi_head/hemi head bd it.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Resources/Audio/countdown-to-destruction.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Resources/Themes/MenuWidgetTheme.tres" type="Theme" id=7]
+[ext_resource path="res://Resources/Textures/Planet.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 69
@@ -40,7 +41,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/Menu"]
+[node name="Planet" type="TextureRect" parent="CanvasLayer/Menu"]
+margin_left = -765.0
+margin_top = 103.0
+margin_right = 284.0
+margin_bottom = 1152.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer/Menu"]
 margin_left = 104.0
 margin_top = 59.0
 margin_right = 745.0
@@ -191,18 +202,21 @@ __meta__ = {
 }
 
 [node name="HostButton" type="Button" parent="CanvasLayer/Menu/HostMenu/Panel"]
-margin_left = 208.0
-margin_top = 268.0
-margin_right = 250.0
-margin_bottom = 288.0
+margin_left = 163.0
+margin_top = 245.0
+margin_right = 255.0
+margin_bottom = 285.448
 text = "Host"
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Menu/HostMenu/Panel"]
-margin_left = 29.0
-margin_top = 269.0
-margin_right = 71.0
-margin_bottom = 289.0
+margin_left = 20.0
+margin_top = 245.0
+margin_right = 115.0
+margin_bottom = 285.448
 text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="JoinMenu" type="Control" parent="CanvasLayer/Menu"]
 visible = false
