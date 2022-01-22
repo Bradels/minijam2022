@@ -8,39 +8,28 @@ var current_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
-onready var _exhaust = $Exhaust
+onready var thrusters = $Thrusters
 
 func _physics_process(_delta):
-	var moving = false
-	var motion = Vector2()
-	motion.x = 0
-	motion.y = 0
+	thrusters.off()
 
-	if Input.is_action_pressed('up'):
-		motion.y = -1
-		moving = true
+	if Input.is_action_pressed('ship_forward'):
+		thrusters.forward()
 
-	if Input.is_action_pressed('down'):
-		motion.y = 1
-		moving = true
+	if Input.is_action_pressed('ship_reverse'):
+		thrusters.reverse()
 		
-	if Input.is_action_pressed('left'):
-		motion.x = -1
-		moving = true
+	if Input.is_action_pressed('ship_rotate_left'):
+		thrusters.rotate_left()
 		
-	if Input.is_action_pressed('right'):
-		motion.x = 1
-		moving = true
-	
-	if (moving):
-		_exhaust.visible = true
-	else:
-		_exhaust.visible = false
-
-	motion = motion.normalized()
-	motion = move_and_slide(motion * move_speed)
-	
-	look_at(get_global_mouse_position())
+	if Input.is_action_pressed('ship_rotate_right'):
+		thrusters.rotate_right()
+		
+	if Input.is_action_pressed('ship_strafe_left'):
+		thrusters.strafe_left()
+		
+	if Input.is_action_pressed('ship_strafe_right'):
+		thrusters.strafe_right()
 
 
 func _process(delta):
