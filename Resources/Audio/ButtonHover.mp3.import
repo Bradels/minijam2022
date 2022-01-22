@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ButtonHover.mp3-231e0854beb137ebc75c8a3dec86d743.mp3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
