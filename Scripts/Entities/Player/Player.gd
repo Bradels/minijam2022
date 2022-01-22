@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 
+signal moved(position, rotation)
+
 var move_speed : int = 256
 var bullet_speed : int = 1024
 var bullet : PackedScene = preload("res://Scenes/Entities/Bullet.tscn")
@@ -9,7 +11,7 @@ var bullet_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
 
-var is_current : bool = false
+var is_current : bool = true
 var is_host : bool = false
 onready var _camera : Camera2D = $Camera
 onready var _nozzle : Node2D = $Nozzle
@@ -53,23 +55,12 @@ func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 
 
-puppet func poopdate(position, rotation):
-	shitdate(position, rotation)
-	if is_host and !is_current:
-		rpc_unreliable("shitdate", position, rotation)
-
-
-puppet func shitdate(position, rotation):
-	self.position = position
-	self.rotation = rotation
-
-
 func _process(delta):
 	if _camera.current != is_current:
 		_camera.current = is_current
 	
 	if is_current:
-		rpc_unreliable("poopdate", position, rotation)
+		emit_signal('moved', position, rotation)
 		
 		bullet_time += delta
 		if (bullet_time < bullet_delta):
