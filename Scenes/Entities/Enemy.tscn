@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Sprites/Entities.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemy.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=22]
-radius = 16.0
+radius = 13.0
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
@@ -46,16 +46,174 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 144, 192, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 240, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 192, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 240, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 240, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 192, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 240, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 288, 48, 48 )
+
 [sub_resource type="SpriteFrames" id=23]
 animations = [ {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "claw_attack",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=24]
 radius = 18.0
+
+[sub_resource type="Animation" id=33]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "claw_attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtBox/HitSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 6.9644, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 0.333333 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 0.333333 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "Hurt"
@@ -73,17 +231,52 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=41]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "default" ]
+}
+
+[sub_resource type="CapsuleShape2D" id=32]
+radius = 13.0
+
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2( 8, 0 )
 shape = SubResource( 22 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 23 )
-frame = 3
+animation = "claw_attack"
+frame = 1
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -93,4 +286,22 @@ visible = false
 shape = SubResource( 24 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 33 )
+anims/Death = SubResource( 26 )
 anims/Hurt = SubResource( 25 )
+anims/Idle = SubResource( 41 )
+anims/Walk = SubResource( 34 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="HitSprite" type="Sprite" parent="HurtBox"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 25, -5 )
+rotation = -1.57715
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96.6722, 335.95, 47.4869, 28.6318 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 21, -6 )
+shape = SubResource( 32 )

@@ -8,5 +8,5 @@ func _process(delta):
 
 func _on_Hitbox_body_entered(body):
 	if "Enemy" in body.name:
-		body._animation_player.play('Hurt')
+		body.hurt(1)
 		queue_free()
