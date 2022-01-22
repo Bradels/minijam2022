@@ -105,7 +105,7 @@ func fire():
 		"position": bullet_instance.position,
 		"rotation": bullet_instance.rotation,
 		"velocity": bullet_instance.velocity,
-		"path_to_scene": bullet_instance.path_to_scene
+		#"path_to_scene": bullet_instance.path_to_scene
 	}
 	emit_signal("entity_spawned",self,bullet_props)
 	get_tree().get_root().call_deferred('add_child', bullet_instance)

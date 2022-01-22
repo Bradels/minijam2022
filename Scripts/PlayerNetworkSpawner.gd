@@ -1,6 +1,6 @@
 extends Node2D
 
-var player = preload("res://Scenes/Entities/Player.tscn")
+#var player = preload("res://Scenes/Entities/Player.tscn")
 export(NodePath) onready var player1 = get_node(player1) as KinematicBody2D
 export(NodePath) onready var player2 = get_node(player2) as KinematicBody2D
 export(NodePath) onready var player3 = get_node(player3) as KinematicBody2D

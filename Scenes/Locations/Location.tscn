@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PlayerNetworkSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Location.gd" type="Script" id=2]
@@ -6,9 +6,27 @@
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Audio/take-a-deep-breath.mp3" type="AudioStream" id=5]
 [ext_resource path="res://Resources/Audio/electronica-punch.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Textures/Floor.jpg" type="Texture" id=7]
 
 [node name="Location" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="Node2D"]
+position = Vector2( 736, 0 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 0, 736 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="Node2D"]
+position = Vector2( 736, 736 )
+texture = ExtResource( 7 )
 
 [node name="PlayerNetworkSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( -119, 41 )
