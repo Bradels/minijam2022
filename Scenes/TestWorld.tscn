@@ -7,10 +7,9 @@
 [node name="World" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
-follow_viewport_enable = true
+scroll_offset = Vector2( 1024, 1024 )
 
 [node name="Layer" type="ParallaxLayer" parent="Background"]
-motion_offset = Vector2( 1024, 1024 )
 motion_mirroring = Vector2( 1024, 1024 )
 
 [node name="Starfield" type="Sprite" parent="Background/Layer"]
