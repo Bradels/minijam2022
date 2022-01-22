@@ -4,13 +4,11 @@ extends KinematicBody2D
 signal player_transformed(props)
 signal projectile_fired(projectile, props)
 
-var move_speed : int = 256
-var bullet_speed : int = 1024
-var bullet : PackedScene = preload("res://Components/Entities/Projectiles/Bullet.tscn")
-
-var bullet_time : float = 0
 var fire_rate : float = 2
 onready var bullet_delta : float = 1 / fire_rate
+var bullet_speed : int = 1024
+var bullet_time : float = 0
+var move_speed : int = 256
 
 onready var _camera = $Camera
 onready var _nozzle = $Nozzle
