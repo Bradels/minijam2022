@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rail.png-bdc490dddfe1e114d10cbc486b14b02d.stex"
+path="res://.import/Rail.png-51db755486890f7b18ae94daf77da972.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Rail.png"
-dest_files=[ "res://.import/Rail.png-bdc490dddfe1e114d10cbc486b14b02d.stex" ]
+source_file="res://Assets/Sprites/Rail.png"
+dest_files=[ "res://.import/Rail.png-51db755486890f7b18ae94daf77da972.stex" ]
 
 [params]
 

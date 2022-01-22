@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/EnemySpawner.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Spawners/TestSpawner.tres" type="Resource" id=2]
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://Scripts/Spawners/Spawner.gd\"
+
+
+onready var spawn_object = preload(\"res://Scenes/Entities/Enemy.tscn\")
+export var spawn_max : int = 50
+var spawned = 0
+
+
+func _spawn_random() -> void:
+	if spawned <= spawn_max:
+		var random_position = location.get_random_position()
+		var object = spawn_object.instance()
+		location.add_child(object)
+		object.global_position = random_position
+		spawned += 1
+	pass
+
+
+func _on_SpawnInterval_timeout():
+	_spawn_random()
+"
 
 [node name="EnemySpawner" type="Node2D"]
-script = ExtResource( 1 )
-data = ExtResource( 2 )
+script = SubResource( 1 )
 
 [node name="SpawnInterval" type="Timer" parent="."]
 wait_time = 0.1

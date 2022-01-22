@@ -13,27 +13,9 @@ _global_script_classes=[ {
 "class": "GameLocation",
 "language": "GDScript",
 "path": "res://Scripts/Location.gd"
-}, {
-"base": "Resource",
-"class": "LocationData",
-"language": "GDScript",
-"path": "res://Resources/Locations/LocationData.gd"
-}, {
-"base": "Node2D",
-"class": "Spawner",
-"language": "GDScript",
-"path": "res://Scripts/Spawners/Spawner.gd"
-}, {
-"base": "Resource",
-"class": "SpawnerData",
-"language": "GDScript",
-"path": "res://Resources/Spawners/SpawnerData.gd"
 } ]
 _global_script_class_icons={
-"GameLocation": "",
-"LocationData": "",
-"Spawner": "",
-"SpawnerData": ""
+"GameLocation": ""
 }
 
 [application]

@@ -9,11 +9,11 @@ func _ready():
 	$NormalMusic.play(0.0)
 	$BattleMusic.stop()
 
+
 func get_random_position() -> Vector2:
 	var height = randi() % location_height
 	var length = randi() % location_length
 	return Vector2(length,height)
-
 
 
 func _on_NormalMusic_pressed():
