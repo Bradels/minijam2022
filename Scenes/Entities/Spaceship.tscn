@@ -47,7 +47,7 @@ shape = SubResource( 12 )
 [node name="Thrusters" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="Forward" type="AnimatedSprite" parent="Thrusters"]
+[node name="Primary" type="AnimatedSprite" parent="Thrusters"]
 position = Vector2( -80, 0 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
