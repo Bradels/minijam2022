@@ -64,11 +64,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 7, 0 )
 rotation = -1.5708
-frames = SubResource( 11 )
-<<<<<<< HEAD
-=======
 frame = 5
->>>>>>> 754daa72c0233f36d7cee012ba44e06a39229f8a
 playing = true
 
 [node name="Camera" type="Camera2D" parent="."]

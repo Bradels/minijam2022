@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var forward = $Forward
+onready var primary = $Primary
 onready var reverse_left = $ReverseLeft
 onready var reverse_right = $ReverseRight
 onready var left_front = $LeftFront
@@ -12,7 +12,7 @@ func _ready():
 	off()
 
 func off():
-	forward.visible = false
+	primary.visible = false
 	reverse_left.visible = false
 	reverse_right.visible = false
 	left_front.visible = false
@@ -21,7 +21,7 @@ func off():
 	right_rear.visible = false
 
 func forward():
-	forward.visible = true
+	primary.visible = true
 
 func reverse():
 	reverse_left.visible = true
