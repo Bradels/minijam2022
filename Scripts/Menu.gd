@@ -1,8 +1,11 @@
 extends Control
 
+
+onready var root = get_node('/root/Main')
 var title_scale_speed = 0.0001
 var title_scale_dir = 1
 var is_in_game = false
+
 
 func _ready():
 	Server.connect("player_connected", self, "_on_player_connected")
@@ -10,7 +13,7 @@ func _ready():
 	Server.connect("connection_successful", self, "_on_connection_successful")
 	
 	change_menu("MainMenu")
-	
+
 
 func _process(delta):
 	$Background/Planet.rect_position.x += 0.06
@@ -27,7 +30,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if is_in_game:
 			$PauseMenu.visible = !$PauseMenu.visible
-	
+			
+			
 func change_menu(menu_name):
 	$Background.visible = true
 	$MainMenu.visible = false
@@ -39,7 +43,8 @@ func change_menu(menu_name):
 		$Background.visible = false
 		return
 	get_node(menu_name).visible = true
-	
+
+
  # Main Menu functions
 func _on_MainMenu_HostButton_pressed():
 	change_menu("HostMenu")
@@ -98,6 +103,7 @@ func _on_LobbyMenu_LeaveButton_pressed():
 	Server.close_server()
 	change_menu("MainMenu")
 
+
 func update_lobby_player_list():
 	$LobbyMenu/Panel/PlayerList.clear()
 	for player in Server.player_static_data.values():
@@ -106,11 +112,11 @@ func update_lobby_player_list():
 
 func _on_player_connected():
 	update_lobby_player_list()
-	
-	
+
+
 func _on_player_disconnected():
 	update_lobby_player_list()
-	
+
 
 func _on_connection_successful():
 	var player_name = $JoinMenu/Panel/PlayerName.text
