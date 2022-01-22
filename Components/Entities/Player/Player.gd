@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-signal player_transformed(props)
+signal player_transform(player)
 signal projectile_fired(projectile, props)
 
 var fire_rate : float = 2
@@ -58,18 +58,15 @@ func _physics_process(_delta):
 
 
 func _process(delta):
+	_emit_transform()
+	
 	if is_active:
-		_emit_transformed()
-		
 		if Input.is_action_pressed("pawn_fire"):
 			fire(delta)
 
 
-func _emit_transformed():
-	emit_signal('player_transformed', {
-		'position': position,
-		'rotation': rotation,
-	})
+func _emit_transform():
+	emit_signal('player_transform', self)
 
 
 func fire(delta):

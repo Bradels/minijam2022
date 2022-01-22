@@ -1,5 +1,7 @@
 extends Node
 
+onready var projectile_manager = $ProjectileManager
+
 onready var entity = preload("res://Components/Entities/Player/Player.tscn")
 onready var level = get_parent()
 
@@ -38,9 +40,15 @@ func _create_players():
 
 
 func _connect_players():
-	pass
+	for node in player_nodes.values():
+		node.connect('player_transform', self, '_on_player_transform')
+		node.connect('projectile_fired', projectile_manager, '_on_projectile_fired')
 
 
 func _spawn_players():
 	for id in player_nodes:
 		players_node.add_child(player_nodes[id])
+
+
+func _on_player_transform(player):
+	pass
