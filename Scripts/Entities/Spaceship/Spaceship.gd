@@ -8,7 +8,7 @@ onready var hud = $Camera/Canvas/HUD
 
 var acceleration : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
-var max_velocity : int = 1024
+var max_velocity : int = 512
 var primary_thrust : int = 256
 var secondary_thrust : int = 128
 
