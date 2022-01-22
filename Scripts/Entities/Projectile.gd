@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var path_to_scene = "res://Scenes/Entities/Projectiles/Bullet.tscn"
 var velocity = Vector2()
 
 
