@@ -18,7 +18,7 @@ func _set_zoom(level):
 		"zoom",
 		zoom,
 		Vector2(clamped, clamped),
-		0.2,
+		0.1,
 		tween.TRANS_SINE,
 		tween.EASE_OUT
 	)

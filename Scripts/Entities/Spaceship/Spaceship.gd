@@ -4,14 +4,12 @@ extends KinematicBody2D
 onready var thrusters = $Thrusters
 onready var weapons = $Weapons
 onready var camera = $Camera
-onready var speedometer = $Camera/Canvas/HUD/Speed
+onready var hud = $Camera/Canvas/HUD
 
 var acceleration : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
 var max_velocity : int = 256
 var thrust : int = 256
-
-export var is_active : bool = false
 
 
 func _physics_process(delta):
@@ -45,7 +43,9 @@ func _physics_process(delta):
 	acceleration = acceleration.rotated(rotation)
 	velocity += acceleration * delta
 	position += move_and_slide(velocity * delta)
-	speedometer.text = 'Speed: ' + str(int(velocity.length()))
+	
+	hud.position(position)
+	hud.speed(velocity.length())
 
 
 func _process(delta):
