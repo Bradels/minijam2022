@@ -41,6 +41,7 @@ _global_script_class_icons={
 config/name="mini-jam-jan-2022"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+<<<<<<<HEADrun/main_scene="res://Scenes/Main.tscn"
 
 [autoload]
 
