@@ -19,6 +19,7 @@ var secondary_previous = 'right'
 var secondary_rate : float = 0.5
 var secondary_speed : int = 1536
 onready var secondary_delta : float = 1 / secondary_rate
+onready var secondary_sound_byte = $Pew
 
 
 func _ready():

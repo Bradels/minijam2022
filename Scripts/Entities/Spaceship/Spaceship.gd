@@ -8,13 +8,14 @@ onready var hud = $Camera/Canvas/HUD
 
 var acceleration : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
-var max_velocity : int = 1024
+var max_velocity : int = 512
 var primary_thrust : int = 256
 var secondary_thrust : int = 128
 
 
 func _ready():
-	($Pew.stream as AudioStreamMP3).loop = false
+	pass
+
 
 func _physics_process(delta):
 	thrusters.off()
@@ -58,7 +59,6 @@ func _process(delta):
 	
 	if Input.is_action_pressed('ship_fire_primary'):
 		weapons.fire_primary()
-		$Pew.play(0.0)
 	
 	if Input.is_action_pressed('ship_fire_secondary'):
 		weapons.fire_secondary()

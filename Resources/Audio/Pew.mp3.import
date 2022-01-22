@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Pew.mp3-dd0913ca6cc0f403ba9a26143f6b6da9.mp3str" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

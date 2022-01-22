@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Entities/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Entities/Network.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Resources/Audio/Pew.mp3" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=12]
 radius = 12.0
@@ -35,8 +34,5 @@ shape = SubResource( 12 )
 shape = SubResource( 13 )
 
 [node name="Network" parent="." instance=ExtResource( 3 )]
-
-[node name="Pew" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
 
 [connection signal="entity_updated" from="." to="Network" method="_on_Player_entity_updated"]
