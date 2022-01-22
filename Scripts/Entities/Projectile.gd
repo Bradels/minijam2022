@@ -1,7 +1,8 @@
 extends Node2D
 
-onready var sound_byte = $SoundByte
 var velocity = Vector2()
+onready var scene_path = get_tree().current_scene.filename
+onready var sound_byte = $SoundByte
 
 
 func _ready():

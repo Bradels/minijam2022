@@ -31,8 +31,8 @@ remote func spawn_entity(entity):
 		var position = entity.position
 		var rotation = entity.rotation
 		var velocity = entity.velocity
-		var path_to_scene = entity.path_to_scene
-		var scene = load(path_to_scene)
+		var scene_path = entity.scene_path
+		var scene = load(scene_path)
 		var instance = scene.instance()
 		instance.position = position
 		instance.rotation = rotation
