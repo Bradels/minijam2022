@@ -432,6 +432,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Scene" type="Node" parent="."]
+
 [connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_MainMenu_HostButton_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/JoinButton" to="CanvasLayer/Menu" method="_on_button_hover"]
