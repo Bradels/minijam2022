@@ -1,10 +1,8 @@
 extends KinematicBody2D
 
 
-signal moved(position, rotation)
-signal entity_updated(props)
-signal entity_creates_entity(props)
-signal entity_created(props)
+signal player_transformed(props)
+signal projectile_fired(projectile, props)
 
 var move_speed : int = 256
 var bullet_speed : int = 1024
@@ -18,21 +16,16 @@ onready var _camera = $Camera
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
-var is_current = false
-var is_multiplayer = false
-
 var id = 0
-var networked_props = ["position","rotation"]
+var is_active = false
 
 
 func _ready():
-	if !get_tree().has_network_peer():
-		is_current = true
-	_camera.current = is_current
+	_camera.current = is_active
 
 
 func _physics_process(_delta):
-	if is_current:
+	if is_active:
 		var moving = false
 		var motion = Vector2()
 		motion.x = 0
@@ -66,49 +59,32 @@ func _physics_process(_delta):
 		look_at(get_global_mouse_position())
 
 
-func get_networked_values():
-	var networked_values = {}
-	for prop in networked_props:
-		networked_values[prop] = self[prop]
-	return networked_values
-
-remote func network_entity_updated(props):
-	if !is_current:
-		for prop in props:
-			print("print here for success")
-			self[prop] = props[prop]
-	
-	if get_tree().get_rpc_sender_id() != 1:
-		rpc_unreliable("network_entity_moved", props)
-
-
-
-
 func _process(delta):
-	if is_current:
-		emit_signal("entity_updated",{
-			"position": position,
-			"rotation": rotation
-		})
-		bullet_time += delta
-		if (bullet_time < bullet_delta):
-			return
-	
+	if is_active:
+		_emit_transformed()
+		
 		if Input.is_action_pressed("pawn_fire"):
-			bullet_time = 0
-			fire()
+			fire(delta)
 
 
-func fire():
-	var bullet_instance = bullet.instance()
-	bullet_instance.position = _nozzle.global_position
-	bullet_instance.rotation = rotation
-	bullet_instance.velocity = Vector2(bullet_speed, 0).rotated(rotation)
-	var bullet_props = {
-		"position": bullet_instance.position,
-		"rotation": bullet_instance.rotation,
-		"velocity": bullet_instance.velocity,
-		"scene_path": bullet_instance.scene_path
-	}
-	emit_signal("entity_creates_entity",bullet_props)
-	get_tree().get_root().call_deferred('add_child', bullet_instance)
+func _emit_transformed():
+	emit_signal('player_transformed', {
+		'position': position,
+		'rotation': rotation,
+	})
+
+
+func fire(delta):
+	bullet_time += delta
+	
+	if (bullet_time < bullet_delta):
+		return
+	
+	bullet_time = 0
+	emit_signal('projectile_fired', {
+		'type': 'PAWN_PRIMARY',
+		'owner_id': id,
+		"position": _nozzle.global_position,
+		"rotation": 	rotation,
+		"velocity": Vector2(bullet_speed, 0).rotated(rotation),
+	})
