@@ -39,12 +39,13 @@ _global_script_class_icons={
 [application]
 
 config/name="mini-jam-jan-2022"
-run/main_scene="res://Scenes/Player.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Server="*res://Scripts/Server.gd"
+NetworkManager="*res://Scripts/NetworkManager.gd"
 
 [input]
 
