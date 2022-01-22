@@ -17,7 +17,11 @@ script = ExtResource( 2 )
 position = Vector2( 7, 0 )
 rotation = -1.5708
 frames = ExtResource( 1 )
+<<<<<<< HEAD
 frame = 4
+=======
+frame = 3
+>>>>>>> ce4fa43 (Fixed net-twerking should now be more working)
 playing = true
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -37,4 +41,4 @@ shape = SubResource( 13 )
 [node name="Network" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[connection signal="moved" from="." to="Network" method="_on_Player_moved"]
+[connection signal="entity_updated" from="." to="Network" method="_on_Player_entity_updated"]

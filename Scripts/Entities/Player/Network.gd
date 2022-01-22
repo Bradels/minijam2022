@@ -1,32 +1,21 @@
 extends Node
 
-
-var player
-var rpc_ready = false
+onready var rpc_ready = get_tree().has_network_peer()
 
 
 func _ready():
-	player = get_parent()
-	if !get_tree().has_network_peer():
-		player.is_active_player = true
+	pass
 
 
 func _process(_delta):
-	if rpc_ready != get_tree().has_network_peer():
-		rpc_ready = get_tree().has_network_peer()
+	pass
 
-
-func _on_Player_moved(position, rotation):
+func _on_Player_entity_updated(props):
 	if rpc_ready:
-		rpc_unreliable("poopdate", position, rotation)
+		rpc_unreliable("entity_updated",props)
+	pass # Replace with function body.
 
-
-puppet func poopdate(position, rotation):
-	shitdate(position, rotation)
-	if player.is_host and !player.is_current:
-		rpc_unreliable("shitdate", position, rotation)
-
-
-puppet func shitdate(position, rotation):
-	player.position = position
-	player.rotation = rotation
+remote func entity_updated(props):
+	var object = get_parent()
+	for prop in props:
+		object[prop] = props[prop]

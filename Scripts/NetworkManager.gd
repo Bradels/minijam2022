@@ -13,17 +13,9 @@ func _ready():
 
 func _on_entity_updated(entity,props):
 	if is_host:
-		rpc_unreliable("network_entity_updated",entity, props)
+		rpc_unreliable("network_entity_updated",props)
 	else:
-		rpc_unreliable_id(1,"network_entity_updated",entity,props)
-
-remote func network_entity_updated(entity,props):
-	if !entity == local_player:
-		for prop in props:
-			entity[prop] = props[prop]
-	
-	if get_tree().get_rpc_sender_id() != 1:
-		rpc_unreliable("network_entity_updated",entity,props)
+		rpc_unreliable_id(1,"network_entity_updated",props)
 
 func _on_entity_spawned(entity_owner,props):
 	if is_host:
@@ -39,12 +31,11 @@ remote func spawn_entity(entity):
 		var position = entity.position
 		var rotation = entity.rotation
 		var velocity = entity.velocity
-		var parent = entity.get_parent()
 		var path_to_scene = entity.path_to_scene
 		var scene = load(path_to_scene)
 		var instance = scene.instance()
 		instance.position = position
 		instance.rotation = rotation
 		instance.velocity = velocity
-		parent.add_child(instance)
+		get_tree().root.add_child(instance)
 		
