@@ -1,6 +1,6 @@
 extends Node
 
-onready var entity = preload("res://Scenes/Entities/Player.tscn")
+onready var entity = preload("res://Components/Entities/Player/Player.tscn")
 onready var level = get_parent()
 
 onready var is_multiplayer = get_tree().has_network_peer()

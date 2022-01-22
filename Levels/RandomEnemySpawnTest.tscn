@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Components/Spawners/PlayerNetworkSpawner.gd" type="Script" id=2]
+[ext_resource path="res://Levels/RandomEnemySpawnTest.gd" type="Script" id=3]
+[ext_resource path="res://Components/Entities/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Textures/Floor.jpg" type="Texture" id=5]
+[ext_resource path="res://Assets/Audio/take-a-deep-breath.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audio/electronica-punch.mp3" type="AudioStream" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+onready var location : GameLocation = get_parent()
+onready var spawn_object = preload(\"res://Components/Entities/Enemy/Enemy.tscn\")
+export var spawn_max : int = 50
+var spawned = 0
+
+
+func _spawn_random() -> void:
+	if spawned <= spawn_max:
+		var random_position = location.get_random_position()
+		var object = spawn_object.instance()
+		location.add_child(object)
+		object.global_position = random_position
+		spawned += 1
+	pass
+
+
+func _on_SpawnInterval_timeout():
+	_spawn_random()
+"
+
+[node name="RandomEnemySpawnTest" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Background"]
+texture = ExtResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Background"]
+position = Vector2( 736, 0 )
+texture = ExtResource( 5 )
+
+[node name="Sprite3" type="Sprite" parent="Background"]
+position = Vector2( 0, 736 )
+texture = ExtResource( 5 )
+
+[node name="Sprite4" type="Sprite" parent="Background"]
+position = Vector2( 736, 736 )
+texture = ExtResource( 5 )
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = SubResource( 1 )
+
+[node name="SpawnInterval" type="Timer" parent="EnemySpawner"]
+wait_time = 0.1
+autostart = true
+
+[node name="PlayerNetworkSpawner" type="Node2D" parent="."]
+position = Vector2( -119, 41 )
+script = ExtResource( 2 )
+
+[node name="Player1" parent="." instance=ExtResource( 4 )]
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 37, -93 )
+
+[node name="Player3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 118, 26 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 890.0
+margin_top = 543.0
+margin_right = 991.0
+margin_bottom = 563.0
+text = "Normal Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+margin_left = 894.0
+margin_top = 571.0
+margin_right = 995.0
+margin_bottom = 591.0
+text = "Battle Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NormalMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[connection signal="timeout" from="EnemySpawner/SpawnInterval" to="EnemySpawner" method="_on_SpawnInterval_timeout"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_NormalMusic_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_BattleMusic_pressed"]

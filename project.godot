@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "GameLocation",
 "language": "GDScript",
-"path": "res://Scripts/Location.gd"
+"path": "res://Levels/RandomEnemySpawnTest.gd"
 } ]
 _global_script_class_icons={
 "GameLocation": ""
@@ -21,14 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="mini-jam-jan-2022"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 <<<<<<<HEADrun/main_scene="res://Scenes/Main.tscn"
 
 [autoload]
 
-Server="*res://Scripts/Server.gd"
-NetworkManager="*res://Scripts/NetworkManager.gd"
+Server="*res://Components/Server.gd"
+NetworkManager="*res://Components/Managers/NetworkManager.gd"
 
 [display]
 

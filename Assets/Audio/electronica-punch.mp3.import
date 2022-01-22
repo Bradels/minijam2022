@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/electronica-punch.mp3-a0bd0f98df4385c43b51ef9932e1835c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/electronica-punch.mp3"
+dest_files=[ "res://.import/electronica-punch.mp3-a0bd0f98df4385c43b51ef9932e1835c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ButtonHover.mp3-d28d2d7b0977a6d4742bd8301b70b5e3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/ButtonHover.mp3"
+dest_files=[ "res://.import/ButtonHover.mp3-d28d2d7b0977a6d4742bd8301b70b5e3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

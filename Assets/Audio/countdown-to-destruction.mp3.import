@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/countdown-to-destruction.mp3-be503e827e6e82d8de00fb9e176f9b14.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/countdown-to-destruction.mp3"
+dest_files=[ "res://.import/countdown-to-destruction.mp3-be503e827e6e82d8de00fb9e176f9b14.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

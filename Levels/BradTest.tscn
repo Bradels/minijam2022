@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Components/Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Components/Entities/Enemy/Enemy.tscn" type="PackedScene" id=2]
+
+[node name="World2" type="Node2D"]
+
+[node name="Enemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 431, -181 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 440, 85 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 24, -174 )
+
+[node name="Enemy7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 82, 70 )
+
+[node name="Enemy8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 552, 182 )
+
+[node name="Enemy9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 599, -196 )
+
+[node name="Enemy10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 870, -156 )
+
+[node name="Enemy11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 902, 167 )
+
+[node name="Enemy12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 452, 487 )
+
+[node name="Enemy13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 165, 381 )
+
+[node name="Enemy14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 299, 278 )
+
+[node name="Enemy15" parent="." instance=ExtResource( 2 )]
+position = Vector2( -225, -423 )
+
+[node name="Enemy17" parent="." instance=ExtResource( 2 )]
+position = Vector2( -462, -160 )
+
+[node name="Enemy18" parent="." instance=ExtResource( 2 )]
+position = Vector2( -632, -416 )
+
+[node name="Enemy19" parent="." instance=ExtResource( 2 )]
+position = Vector2( -461, -237 )
+
+[node name="Enemy20" parent="." instance=ExtResource( 2 )]
+position = Vector2( -574, -172 )
+
+[node name="Enemy28" parent="." instance=ExtResource( 2 )]
+position = Vector2( -204, -5 )
+
+[node name="Enemy29" parent="." instance=ExtResource( 2 )]
+position = Vector2( -179, 98 )
+
+[node name="Enemy37" parent="." instance=ExtResource( 2 )]
+position = Vector2( -97, 72 )
+rotation = 5.08668
+
+[node name="Enemy22" parent="." instance=ExtResource( 2 )]
+position = Vector2( -57, -438 )
+
+[node name="Enemy23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 214, -398 )
+
+[node name="Enemy26" parent="." instance=ExtResource( 2 )]
+position = Vector2( -491, 139 )
+
+[node name="Enemy27" parent="." instance=ExtResource( 2 )]
+position = Vector2( -357, 36 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -291, 161 )
