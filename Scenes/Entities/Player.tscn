@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/Entities.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Player/Network.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -64,6 +65,7 @@ script = ExtResource( 2 )
 position = Vector2( 7, 0 )
 rotation = -1.5708
 frames = SubResource( 11 )
+frame = 5
 playing = true
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -79,3 +81,8 @@ shape = SubResource( 12 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 13 )
+
+[node name="Network" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[connection signal="moved" from="." to="Network" method="_on_Player_moved"]
