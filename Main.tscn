@@ -63,15 +63,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Planet" type="TextureRect" parent="CanvasLayer/Menu/Background"]
-margin_left = -754.0
-margin_top = -65.0
-margin_right = 295.0
-margin_bottom = 984.0
+[node name="Planet" type="Sprite" parent="CanvasLayer/Menu/Background"]
+position = Vector2( -56, 608 )
 texture = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="CanvasLayer/Menu/Background"]
 margin_left = 104.0

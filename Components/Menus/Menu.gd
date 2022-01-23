@@ -2,7 +2,7 @@ extends Control
 
 
 onready var root = get_node('/root/Main')
-var title_scale_speed = 0.0001
+var title_scale_speed = 0.01
 var title_scale_dir = 1
 var is_in_game = false
 
@@ -20,9 +20,10 @@ func _ready():
 
 
 func _process(delta):
-	$Background/Planet.rect_position.x += 0.06
-	$Background/Planet.rect_position.y += 0.04
-	$Background/Title.rect_scale += Vector2(title_scale_speed * title_scale_dir, title_scale_speed * title_scale_dir)
+	$Background/Planet.position.x += 6 * delta
+	$Background/Planet.position.y += 4 * delta
+	var scale_speed = title_scale_speed * title_scale_dir * delta
+	$Background/Title.rect_scale += Vector2(scale_speed, scale_speed)
 	if $Background/Title.rect_scale.x > 1.2:
 		title_scale_dir = -1
 		$Background/Title.rect_scale = Vector2(1.2, 1.2)
@@ -151,8 +152,9 @@ func _on_PauseMenu_ResumeButton_pressed():
 
 func _on_PauseMenu_MenuButton_pressed():
 	play_button_press_audio()
-	get_node("/root/Main/Location").queue_free()
+	root._reset_scene()
 	is_in_game = false
+	$MenuMusic.play(0.0)
 	change_menu("MainMenu")
 
 
