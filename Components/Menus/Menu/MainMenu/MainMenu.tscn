@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Components/Menus/Menu/MainMenu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Themes/MenuTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Components/Menus/Button/Button.tscn" type="PackedScene" id=3]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -287.0
+margin_top = -317.0
+margin_right = -105.0
+margin_bottom = -273.0
+text = "Host Game"
+align = 2
+
+[node name="JoinButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -276.0
+margin_top = -263.0
+margin_right = -105.0
+margin_bottom = -219.0
+text = "Join Game"
+align = 2
+
+[node name="OptionsButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -234.0
+margin_top = -212.0
+margin_right = -105.0
+margin_bottom = -168.0
+text = "Options"
+align = 2
+
+[node name="ExitButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -158.0
+margin_right = -105.0
+margin_bottom = -114.0
+text = "Exit"
+align = 2

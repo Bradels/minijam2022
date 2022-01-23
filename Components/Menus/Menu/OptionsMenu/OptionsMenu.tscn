@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Components/Menus/Button/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Menus/Menu/OptionsMenu/OptionsMenu.gd" type="Script" id=3]
+
+[node name="OptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 510.0
+margin_top = 200.0
+margin_right = 780.0
+margin_bottom = 520.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 41.0
+text = "Options"
+align = 1
+
+[node name="Volume" type="Label" parent="Panel"]
+margin_left = 20.0
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 71.0
+text = "Volume"
+
+[node name="MasterVolume" type="HSlider" parent="Panel"]
+margin_left = 114.0
+margin_top = 56.0
+margin_right = 242.0
+margin_bottom = 72.0
+max_value = 80.0
+value = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Panel" instance=ExtResource( 2 )]
+margin_left = 105.0
+margin_top = 247.0
+margin_right = 164.993
+margin_bottom = 287.448
+text = "Back"
+
+[node name="ApplyButton" parent="Panel" instance=ExtResource( 2 )]
+margin_left = 179.0
+margin_top = 247.0
+margin_right = 238.993
+margin_bottom = 287.448
+text = "Apply"

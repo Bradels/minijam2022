@@ -1,19 +1,10 @@
 extends Node
 
 
-onready var scene = $Scene
-export(Texture) var cursor_image 
+export var cursor_image : Texture
+onready var options = SaveManager.load_options()
+
 
 func _ready():
-	Input.set_custom_mouse_cursor(cursor_image,
-		Input.CURSOR_ARROW)
-
-func _reset_scene():
-	for child in scene.get_children():
-		scene.remove_child(child)
-		child.queue_free()
-
-
-func change_scene(instance):
-	_reset_scene()
-	scene.add_child(instance)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(options['volume'] * 0.01))
+	Input.set_custom_mouse_cursor(cursor_image, Input.CURSOR_ARROW)

@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Components/Menus/Button/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Menus/Menu/HostMenu/HostMenu.gd" type="Script" id=3]
+
+[node name="HostMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 510.0
+margin_top = 200.0
+margin_right = 780.0
+margin_bottom = 467.0
+
+[node name="Title" type="Label" parent="Panel"]
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 41.0
+text = "Host Game"
+align = 1
+
+[node name="NameLabel" type="Label" parent="Panel"]
+margin_left = 20.0
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 71.0
+text = "Name:"
+
+[node name="NameInput" type="LineEdit" parent="Panel"]
+margin_left = 100.0
+margin_top = 50.0
+margin_right = 240.0
+margin_bottom = 78.1967
+text = "HostPlayer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortLabel" type="Label" parent="Panel"]
+margin_left = 20.0
+margin_top = 90.0
+margin_right = 92.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 78, 22 )
+text = "Port:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortInput" type="LineEdit" parent="Panel"]
+margin_left = 100.0
+margin_top = 90.0
+margin_right = 240.0
+margin_bottom = 118.197
+text = "5767"
+
+[node name="MaxPlayersLabel" type="Label" parent="Panel"]
+margin_left = 20.0
+margin_top = 132.0
+margin_right = 92.0
+margin_bottom = 153.0
+rect_pivot_offset = Vector2( 78, 22 )
+text = "Max Players:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxPlayersInput" type="SpinBox" parent="Panel"]
+margin_left = 141.0
+margin_top = 130.0
+margin_right = 256.0
+margin_bottom = 158.197
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" parent="Panel" instance=ExtResource( 2 )]
+margin_left = 185.0
+margin_top = 185.0
+margin_right = 240.993
+margin_bottom = 225.448
+text = "Host"
+
+[node name="BackButton" parent="Panel" instance=ExtResource( 2 )]
+margin_left = 117.0
+margin_top = 185.0
+margin_right = 176.993
+margin_bottom = 225.448
+text = "Back"

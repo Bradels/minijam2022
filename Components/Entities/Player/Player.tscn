@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Components/Entities/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Components/Entities/Player/Network.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Textures/Frames/PlayerSpriteFrames.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="CircleShape2D" id=12]
@@ -32,6 +31,3 @@ shape = SubResource( 12 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 13 )
-
-[node name="Network" type="Node" parent="."]
-script = ExtResource( 2 )
