@@ -59,10 +59,15 @@ func _physics_process(_delta):
 
 func _process(delta):
 	if is_active:
+		_elapse_time(delta)
 		_emit_transform()
 	
 		if Input.is_action_pressed("pawn_fire"):
-			fire(delta)
+			fire()
+
+
+func _elapse_time(delta):
+	bullet_time += delta
 
 
 func _emit_transform():
@@ -73,9 +78,7 @@ func _emit_transform():
 	})
 
 
-func fire(delta):
-	bullet_time += delta
-	
+func fire():
 	if (bullet_time < bullet_delta):
 		return
 	
