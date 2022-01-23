@@ -17,6 +17,7 @@ func _ready():
 	Server.connect("connection_successful", self, "_on_connection_successful")
 	
 	change_menu("MainMenu")
+	AudioManager.play_music("MenuMusic")
 
 
 func _process(delta):
@@ -36,6 +37,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if is_in_game:
 			$PauseMenu.visible = !$PauseMenu.visible
+	
+	
 			
 			
 func change_menu(menu_name):
@@ -108,11 +111,10 @@ func _on_JoinMenu_BackButton_pressed():
 # Lobby Menu functions
 func _on_LobbyMenu_ReadyButton_pressed():
 	play_button_press_audio()
-	$MenuMusic.stop()
+	AudioManager.play_music("Battle1")
 	var scene = load("res://Levels/MultiplayerTest.tscn")
 	root.change_scene(scene.instance())
 	change_menu("")
-	$MenuMusic.stop()
 	is_in_game = true
 
 
@@ -155,7 +157,7 @@ func _on_PauseMenu_MenuButton_pressed():
 	play_button_press_audio()
 	root._reset_scene()
 	is_in_game = false
-	$MenuMusic.play(0.0)
+	AudioManager.play_music("MenuMusic")
 	change_menu("MainMenu")
 
 

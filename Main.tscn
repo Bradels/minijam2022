@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/MenuTheme.tres" type="Theme" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Audio/ButtonPress.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Textures/Cursor.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Audio/electronica-punch.mp3" type="AudioStream" id=12]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -50,10 +51,6 @@ volume_db = -20.0
 [node name="ButtonPress" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
 stream = ExtResource( 10 )
 volume_db = -20.0
-
-[node name="MenuMusic" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
-stream = ExtResource( 5 )
-autoplay = true
 
 [node name="Background" type="Control" parent="CanvasLayer/Menu"]
 margin_right = 40.0
@@ -510,6 +507,20 @@ __meta__ = {
 }
 
 [node name="Scene" type="Node" parent="."]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Ambience1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Battle1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 12 )
+autoplay = true
 
 [connection signal="mouse_entered" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu/HostButton" to="CanvasLayer/Menu" method="_on_MainMenu_HostButton_pressed"]
