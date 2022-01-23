@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/MenuTheme.tres" type="Theme" id=2]
@@ -11,13 +11,19 @@
 [ext_resource path="res://Main.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Audio/ButtonPress.mp3" type="AudioStream" id=10]
 
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( -317.641, 77.912, 317.641, -77.912, -768, 160, -268.634, -179.619, 268.634, 179.619, 224, 344, 39.2296, -265.897, -39.2296, 265.897, 576, 1064 )
+}
+
 [sub_resource type="DynamicFont" id=1]
 size = 69
+use_filter = true
 font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
-Label/colors/font_color = Color( 0.729412, 0.784314, 0.784314, 1 )
+Label/colors/font_color = Color( 0.627451, 0.74902, 0.74902, 1 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 9 )
@@ -63,8 +69,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Planet" type="Sprite" parent="CanvasLayer/Menu/Background"]
-position = Vector2( -56, 608 )
+[node name="PlanetPath" type="Path2D" parent="CanvasLayer/Menu/Background"]
+position = Vector2( -80, 488 )
+curve = SubResource( 3 )
+
+[node name="PathFollow" type="PathFollow2D" parent="CanvasLayer/Menu/Background/PlanetPath"]
+position = Vector2( -70.3587, 202.949 )
+rotation = -0.138005
+offset = 712.52
+rotate = false
+
+[node name="Planet" type="Sprite" parent="CanvasLayer/Menu/Background/PlanetPath/PathFollow"]
+position = Vector2( 17.2866, -76.1134 )
+rotation = 0.13935
 texture = ExtResource( 7 )
 
 [node name="Title" type="Label" parent="CanvasLayer/Menu/Background"]

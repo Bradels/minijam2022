@@ -20,8 +20,9 @@ func _ready():
 
 
 func _process(delta):
-	$Background/Planet.position.x += 6 * delta
-	$Background/Planet.position.y += 4 * delta
+	#$Background/Planet.position.x += 6 * delta
+	#$Background/Planet.position.y += 4 * delta
+	$Background/PlanetPath/PathFollow.offset += 10 * delta
 	var scale_speed = title_scale_speed * title_scale_dir * delta
 	$Background/Title.rect_scale += Vector2(scale_speed, scale_speed)
 	if $Background/Title.rect_scale.x > 1.2:
