@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/MenuTheme.tres" type="Theme" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Audio/ButtonHover.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Main.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Audio/ButtonPress.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Textures/Cursor.png" type="Texture" id=11]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -30,6 +31,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_vertical_guides_": [ 1000.0 ]
 }
+cursor_image = ExtResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
