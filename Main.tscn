@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Themes/MenuTheme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Textures/Planet.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Audio/ButtonHover.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Main.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Audio/ButtonPress.mp3" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 69
@@ -36,6 +37,10 @@ __meta__ = {
 
 [node name="ButtonHover" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
 stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
+stream = ExtResource( 10 )
 volume_db = -20.0
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="CanvasLayer/Menu"]
@@ -319,6 +324,7 @@ margin_bottom = 290.448
 text = "Back"
 
 [node name="OptionsMenu" type="Control" parent="CanvasLayer/Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )

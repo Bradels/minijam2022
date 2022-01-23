@@ -52,23 +52,28 @@ func change_menu(menu_name):
 
  # Main Menu functions
 func _on_MainMenu_HostButton_pressed():
+	play_button_press_audio()
 	change_menu("HostMenu")
 
 
 func _on_MainMenu_JoinButton_pressed():
+	play_button_press_audio()
 	change_menu("JoinMenu")
 
 
 func _on_MainMenu_OptionsButton_pressed():
+	play_button_press_audio()
 	change_menu("OptionsMenu")
 
 
 func _on_MainMenu_ExitButton_pressed():
+	play_button_press_audio()
 	get_tree().quit()
 
 
 # Host Menu functions
 func _on_HostMenu_HostButton_pressed():
+	play_button_press_audio()
 	var player_name = $HostMenu/Panel/PlayerName.text
 	var port = int($HostMenu/Panel/Port.text)
 	var max_players = int($HostMenu/Panel/MaxPlayers.text)
@@ -79,11 +84,13 @@ func _on_HostMenu_HostButton_pressed():
 
 
 func _on_HostMenu_BackButton_pressed():
+	play_button_press_audio()
 	change_menu("MainMenu")
 
 
 # Join Menu functions
 func _on_JoinMenu_JoinButton_pressed():
+	play_button_press_audio()
 	var player_name = $JoinMenu/Panel/PlayerName.text
 	var ip = $JoinMenu/Panel/Ip.text
 	var port = int($JoinMenu/Panel/Port.text)
@@ -92,11 +99,13 @@ func _on_JoinMenu_JoinButton_pressed():
 
 
 func _on_JoinMenu_BackButton_pressed():
+	play_button_press_audio()
 	change_menu("MainMenu")
 
 
 # Lobby Menu functions
 func _on_LobbyMenu_ReadyButton_pressed():
+	play_button_press_audio()
 	$MenuMusic.stop()
 	var scene = load("res://Levels/MultiplayerTest.tscn")
 	root.change_scene(scene.instance())
@@ -106,6 +115,7 @@ func _on_LobbyMenu_ReadyButton_pressed():
 
 
 func _on_LobbyMenu_LeaveButton_pressed():
+	play_button_press_audio()
 	Server.close_server()
 	change_menu("MainMenu")
 
@@ -135,25 +145,30 @@ func _on_button_hover():
 
 
 func _on_PauseMenu_ResumeButton_pressed():
+	play_button_press_audio()
 	$PauseMenu.visible = false
 
 
 func _on_PauseMenu_MenuButton_pressed():
+	play_button_press_audio()
 	get_node("/root/Main/Location").queue_free()
 	is_in_game = false
 	change_menu("MainMenu")
 
 
 func _on_PauseMenu_ExitButton_pressed():
+	play_button_press_audio()
 	get_tree().quit()
 	
 
 
 func _on_OptionsMenu_ApplyButton_pressed():
+	play_button_press_audio()
 	apply_volume($OptionsMenu/Panel/MasterVolume.value)
 
 
 func _on_OptionsMenu_BackButton_pressed():
+	play_button_press_audio()
 	change_menu("MainMenu")
 
 
@@ -164,3 +179,6 @@ func _on_OptionsMenu_MasterVolume_value_changed(value):
 func apply_volume(volume):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(volume * 0.01))
 	SaveManager.save_options({"v": volume})
+	
+func play_button_press_audio():
+	$ButtonPress.play(0.0)
