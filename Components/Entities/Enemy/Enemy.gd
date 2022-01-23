@@ -64,15 +64,15 @@ func _determine_state():
 		return ENEMY_STATES.IDLE
 
 	var distance_to_nearest_player = global_position.distance_to(nearest_player.global_position)
+
+	if distance_to_nearest_player < attack_radius:
+		return ENEMY_STATES.CLAWING
 	
 	if distance_to_nearest_player < search_radius:
 		return ENEMY_STATES.FOLLOWING
 
 	if distance_to_nearest_player > search_radius:
 		return ENEMY_STATES.IDLE
-
-	if distance_to_nearest_player < attack_radius:
-		return ENEMY_STATES.CLAWING
 
 
 func set_nearest_player_or_null():
@@ -118,6 +118,7 @@ func death():
 
 
 func attack():
+	_look_at(nearest_player.global_position)
 	_play_animation('Attack')
 
 
