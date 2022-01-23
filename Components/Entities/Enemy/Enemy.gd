@@ -55,6 +55,7 @@ func _play_animation(name):
 	if name == 'Death': return animation_player.play(name)
 	if name == 'Hurt': return animation_player.play(name)
 	if current == 'Attack': return
+	if current == 'Hurt': return
 	
 	animation_player.play(name)
 
