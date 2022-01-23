@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/RailgunFire.mp3-c57cdc7162688bccd6afa5cf6eb3c69f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/RailgunFire.mp3"
+dest_files=[ "res://.import/RailgunFire.mp3-c57cdc7162688bccd6afa5cf6eb3c69f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

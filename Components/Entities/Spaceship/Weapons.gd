@@ -7,7 +7,7 @@ var primary_elapsed_left : float = 0
 var primary_elapsed_right : float = 0
 var primary_previous = 'right'
 var primary_rate : float = 2
-var primary_speed : int = 768
+var primary_speed : int = 512
 onready var primary_delta : float = 1 / primary_rate
 
 var secondary_projectile : PackedScene = preload("res://Components/Entities/Projectiles/Rail.tscn")
@@ -17,7 +17,7 @@ var secondary_elapsed_left : float = 0
 var secondary_elapsed_right : float = 0
 var secondary_previous = 'right'
 var secondary_rate : float = 0.5
-var secondary_speed : int = 1536
+var secondary_speed : int = 1024
 onready var secondary_delta : float = 1 / secondary_rate
 onready var secondary_sound_byte = $Pew
 

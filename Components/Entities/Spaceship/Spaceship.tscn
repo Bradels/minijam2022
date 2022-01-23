@@ -81,6 +81,7 @@ position = Vector2( -80, 0 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 
 [node name="ReverseLeft" type="AnimatedSprite" parent="Thrusters"]
@@ -88,6 +89,7 @@ position = Vector2( 12, -32 )
 rotation = 1.5708
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 flip_v = true
 
@@ -96,6 +98,7 @@ position = Vector2( 12, 32 )
 rotation = 1.5708
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 flip_v = true
 
@@ -103,6 +106,7 @@ flip_v = true
 position = Vector2( 32, -24 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 flip_v = true
 
@@ -110,6 +114,7 @@ flip_v = true
 position = Vector2( -32, -24 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 flip_v = true
 
@@ -117,12 +122,14 @@ flip_v = true
 position = Vector2( 32, 24 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 
 [node name="RightRear" type="AnimatedSprite" parent="Thrusters"]
 position = Vector2( -32, 24 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 16 )
+frame = 1
 playing = true
 
 [node name="Weapons" type="Node2D" parent="."]

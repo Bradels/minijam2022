@@ -26,7 +26,13 @@ func _on_Hitbox_body_entered(body):
 	if !visible:
 		return
 
-	if "Enemy" in body.name:
-		body.hurt(1)
-	
-	visible = false
+	match body.name:
+		"Enemy":
+			body.hurt(1)
+			visible = false
+		"Player":
+			pass
+		"Spaceship":
+			pass
+		_:
+			visible = false
