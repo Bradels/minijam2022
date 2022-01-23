@@ -43,7 +43,6 @@ stream = ExtResource( 5 )
 autoplay = true
 
 [node name="Background" type="Control" parent="CanvasLayer/Menu"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -81,7 +80,6 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="Control" parent="CanvasLayer/Menu"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -320,6 +318,64 @@ margin_right = 110.0
 margin_bottom = 290.448
 text = "Back"
 
+[node name="OptionsMenu" type="Control" parent="CanvasLayer/Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu/OptionsMenu"]
+margin_left = 510.0
+margin_top = 200.0
+margin_right = 780.0
+margin_bottom = 520.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/OptionsMenu/Panel"]
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 41.0
+text = "Options"
+align = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Menu/OptionsMenu/Panel"]
+margin_left = 20.0
+margin_top = 50.0
+margin_right = 92.0
+margin_bottom = 71.0
+text = "Volume"
+
+[node name="ApplyButton" type="Button" parent="CanvasLayer/Menu/OptionsMenu/Panel"]
+margin_left = 160.0
+margin_top = 250.0
+margin_right = 240.0
+margin_bottom = 290.448
+text = "Apply"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Menu/OptionsMenu/Panel"]
+margin_left = 30.0
+margin_top = 250.0
+margin_right = 110.0
+margin_bottom = 290.448
+text = "Back"
+
+[node name="MasterVolume" type="HSlider" parent="CanvasLayer/Menu/OptionsMenu/Panel"]
+margin_left = 114.0
+margin_top = 56.0
+margin_right = 242.0
+margin_bottom = 72.0
+value = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LobbyMenu" type="Control" parent="CanvasLayer/Menu"]
 visible = false
 anchor_right = 1.0
@@ -372,6 +428,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Menu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 242, 345 )
@@ -447,6 +504,9 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/Menu/HostMenu/Panel/BackButton" to="CanvasLayer/Menu" method="_on_HostMenu_BackButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/JoinMenu/Panel/JoinButton" to="CanvasLayer/Menu" method="_on_JoinMenu_JoinButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/JoinMenu/Panel/BackButton" to="CanvasLayer/Menu" method="_on_JoinMenu_BackButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/OptionsMenu/Panel/ApplyButton" to="CanvasLayer/Menu" method="_on_OptionsMenu_ApplyButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/OptionsMenu/Panel/BackButton" to="CanvasLayer/Menu" method="_on_OptionsMenu_BackButton_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/OptionsMenu/Panel/MasterVolume" to="CanvasLayer/Menu" method="_on_OptionsMenu_MasterVolume_value_changed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LobbyMenu/Panel/ReadyButton" to="CanvasLayer/Menu" method="_on_LobbyMenu_ReadyButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LobbyMenu/Panel/LeaveButton" to="CanvasLayer/Menu" method="_on_LobbyMenu_LeaveButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/PauseMenu/Panel/ResumeButton" to="CanvasLayer/Menu" method="_on_PauseMenu_ResumeButton_pressed"]

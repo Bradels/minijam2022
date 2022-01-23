@@ -8,6 +8,7 @@ var is_in_game = false
 
 
 func _ready():
+	apply_volume()
 	Server.connect("player_connected", self, "_on_player_connected")
 	Server.connect("player_disconnected", self, "_on_player_disconnected")
 	Server.connect("connection_successful", self, "_on_connection_successful")
@@ -38,6 +39,7 @@ func change_menu(menu_name):
 	$HostMenu.visible = false
 	$JoinMenu.visible = false
 	$LobbyMenu.visible = false
+	$OptionsMenu.visible = false
 	$PauseMenu.visible = false
 	if menu_name == "":
 		$Background.visible = false
@@ -55,7 +57,7 @@ func _on_MainMenu_JoinButton_pressed():
 
 
 func _on_MainMenu_OptionsButton_pressed():
-	pass # Replace with function body.
+	change_menu("OptionsMenu")
 
 
 func _on_MainMenu_ExitButton_pressed():
@@ -141,3 +143,21 @@ func _on_PauseMenu_MenuButton_pressed():
 
 func _on_PauseMenu_ExitButton_pressed():
 	get_tree().quit()
+	
+
+
+func _on_OptionsMenu_ApplyButton_pressed():
+	apply_volume()
+
+
+func _on_OptionsMenu_BackButton_pressed():
+	change_menu("MainMenu")
+
+
+func _on_OptionsMenu_MasterVolume_value_changed(value):
+	apply_volume()
+	
+
+func apply_volume():
+	var volume = $OptionsMenu/Panel/MasterVolume.value * 0.01
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(volume))
