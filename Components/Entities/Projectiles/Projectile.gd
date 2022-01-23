@@ -1,9 +1,6 @@
 extends Node2D
 
 
-signal projectile_destory(id)
-
-
 var velocity = Vector2()
 var id = ""
 var owner_id = ""
@@ -26,6 +23,9 @@ func _process(delta):
 
 
 func _on_Hitbox_body_entered(body):
+	if !visible:
+		return
+
 	if "Enemy" in body.name:
 		visible = false
 		body.hurt(1)

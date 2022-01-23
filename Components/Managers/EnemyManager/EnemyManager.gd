@@ -15,22 +15,39 @@ func _setup():
 
 
 func _process(delta):
+	if !is_host:
+		return
+	
+	_maybe_spawn_enemy(delta)
+	
+	if is_multiplayer:
+		for node in nodes.values():
+			var ref = weakref(node)
+			if ref.get_ref():
+				rpc_unreliable('_remote_transform', node.id, node.position, node.rotation)
+
+
+func _maybe_spawn_enemy(delta):
 	spawn_delta += delta
 	
 	if (spawn_delta > spawn_interval && nodes.size() < max_enemies):
 		spawn_delta = 0
-		_spawn_enemy()
+		
+		var enemy = _spawn_enemy(_get_spawn_position())
+	
+		if is_multiplayer:
+			rpc('_remote_spawn', enemy.id, enemy.position)
 
 
-func _spawn_enemy():
-	var position = _get_spawn_position()
+func _spawn_enemy(position, id = ''):
 	var enemy = entity.instance()
 	
-	enemy.id = enemy.get_instance_id()
+	enemy.id = id if !id.empty() else str(enemy.get_instance_id())
 	enemy.position = position
-	enemy.connect("tree_exited", self, '_on_tree_exited', [enemy.id], 4)
+	enemy.connect("died", self, '_on_died', [], 4)
+	_spawn_node(enemy)
 	
-	._spawn_node(enemy)
+	return enemy
 
 
 func _get_spawn_position():
@@ -39,5 +56,17 @@ func _get_spawn_position():
 	return player.global_position + Vector2(sin(angle),cos(angle)) * spawn_distance
 
 
-func _on_tree_exited(id):
-	_erase_node_by_id(id)
+func _on_died(id):
+	if is_host && is_multiplayer:
+		_erase_node_by_id(id)
+		rpc("_destroy_node_by_id", id)
+
+
+remote func _remote_spawn(id, position):
+	_spawn_enemy(position, id)
+
+
+remote func _remote_transform(id, position, rotation):
+	if nodes.has(id):
+		nodes[id].position = position
+		nodes[id].rotation = rotation

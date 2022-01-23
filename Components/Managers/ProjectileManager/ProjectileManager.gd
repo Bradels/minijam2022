@@ -21,7 +21,7 @@ func _on_projectile_fired(props) -> void:
 	var owner_id = props["owner_id"]
 	
 	var projectile = _create_node(type, position, rotation, velocity, str(owner_id))
-	._spawn_node(projectile)
+	_spawn_node(projectile)
 	
 	if is_multiplayer:
 		rpc(
@@ -61,12 +61,9 @@ func _create_id(node):
 
 
 func _on_projectile_destroyed(id) -> void:
-	._erase_node_by_id(id)
-	
-	if is_multiplayer:
-		rpc("_destory_node_by_id", id)
+	_erase_node_by_id(id)
 
 
 remote func _remote_spawn_projectile(type, position, rotation, velocity, owner_id, id) -> void:
 	var projectile = _create_node(type, position, rotation, velocity, owner_id, id)
-	._spawn_node(projectile)
+	_spawn_node(projectile)

@@ -305,3 +305,5 @@ region_rect = Rect2( 96.6722, 335.95, 47.4869, 28.6318 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 21, -6 )
 shape = SubResource( 32 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
