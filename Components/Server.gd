@@ -8,9 +8,7 @@ signal connection_successful()
 
 var network
 var hosting = false
-
 var players = {}
-var world = {}
 
 
 func start_server(port, max_players):
@@ -83,11 +81,11 @@ func set_player_data(data):
 
 
 remote func host_update_player_data(data):
-	var player_id = get_tree().get_network_unique_id()
-	if players.has(player_id):
-		var my_data = players[player_id]
+	var id = get_tree().get_network_unique_id()
+	if players.has(id):
+		var my_data = players[id]
 		players = data
-		players[player_id] = my_data
+		players[id] = my_data
 	else:
 		players = data
 	
@@ -96,8 +94,8 @@ remote func host_update_player_data(data):
 
 
 remote func client_update_player_data(data):
-	var player_id = get_tree().get_rpc_sender_id()
-	players[player_id] = data
+	var id = get_tree().get_rpc_sender_id()
+	players[id] = data
 	rpc("host_update_player_data", players)
 	print("emmitting signal")
 	emit_signal("player_connected")

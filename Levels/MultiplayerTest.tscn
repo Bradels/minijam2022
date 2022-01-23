@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Components/Managers/PlayerManager/PlayerManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Components/Managers/ProjectileManager/ProjectileManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Components/Managers/EnemyManager/EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Textures/Floor.jpg" type="Texture" id=4]
 
 [node name="Level" type="Node2D"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2( 736, 736 )
+scroll_ignore_camera_zoom = true
+
+[node name="Layer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 736, 736 )
+
+[node name="Floor" type="Sprite" parent="Background/Layer"]
+z_index = -1
+texture = ExtResource( 4 )
+centered = false
 
 [node name="Managers" type="Node" parent="."]
 
