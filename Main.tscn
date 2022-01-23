@@ -74,7 +74,7 @@ position = Vector2( -80, 488 )
 curve = SubResource( 3 )
 
 [node name="PathFollow" type="PathFollow2D" parent="CanvasLayer/Menu/Background/PlanetPath"]
-position = Vector2( -70.3587, 202.949 )
+position = Vector2( -70.3589, 202.949 )
 rotation = -0.138005
 offset = 712.52
 rotate = false
