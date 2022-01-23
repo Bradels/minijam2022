@@ -67,10 +67,6 @@ remote func _remote_transform(props):
 	elif get_tree().get_rpc_sender_id() == 1:
 		_apply_transform(props)
 	
-	# me host, sender is not host = apply locally and broadcast
-	# me not host, sender is host = apply transform
-	# me not host, sender is not host = nothing
-
 
 func _apply_transform(props):
 	if player_nodes.has(props.id) && props.id != current_id:
