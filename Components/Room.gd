@@ -18,5 +18,4 @@ var doors = {
 
 func add_door(direction):
 	for door_pos in doors[direction]:
-		print(door_pos)
 		walls.set_cell(door_pos.x,door_pos.y,4)

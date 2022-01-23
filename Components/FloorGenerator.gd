@@ -1,5 +1,10 @@
 extends Node
 
+var room_types = [
+	preload("res://Levels/Rooms/Room1.tscn"),
+	preload("res://Levels/Rooms/Room2.tscn")
+]
+
 class RoomInformation:
 	var type
 	var connections = {
@@ -12,9 +17,6 @@ class RoomInformation:
 
 var floor_structure = []
 export var random_seed:int
-
-
-var room_type = preload("res://Levels/Rooms/Room1.tscn")
 onready var level = get_tree().get_root().find_node('Level', true, false)
 var directionVectors = {
 		"north": Vector2(0,-1),
@@ -33,7 +35,8 @@ var inverse_direction = {
 func _ready():
 	generate_floor(10)
 	for room in floor_structure:
-		var room_instance = room_type.instance()
+		var rand_index:int = randi() % room_types.size()
+		var room_instance = room_types[rand_index].instance()
 		level.call_deferred('add_child',room_instance)
 		room_instance.global_position = room.position * room_instance.room_height * 32
 		for connection in room.connections:

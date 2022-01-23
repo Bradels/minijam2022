@@ -19,6 +19,7 @@
 
 [node name="FloorGenerator" type="Node" parent="."]
 script = ExtResource( 4 )
+random_seed = null
 
 [node name="Background" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2( 1024, 1024 )
