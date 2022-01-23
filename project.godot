@@ -35,6 +35,7 @@ config/icon="res://icon.png"
 
 Server="*res://Components/Server.gd"
 NetworkManager="*res://Components/Managers/NetworkManager.gd"
+SaveManager="*res://Components/SaveManager.gd"
 
 [display]
 

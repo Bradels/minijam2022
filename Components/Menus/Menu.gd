@@ -8,7 +8,10 @@ var is_in_game = false
 
 
 func _ready():
-	apply_volume()
+	var options_save = SaveManager.load_options()
+	if options_save != {}:
+		$OptionsMenu/Panel/MasterVolume.value = options_save["v"]
+		
 	Server.connect("player_connected", self, "_on_player_connected")
 	Server.connect("player_disconnected", self, "_on_player_disconnected")
 	Server.connect("connection_successful", self, "_on_connection_successful")
@@ -147,7 +150,7 @@ func _on_PauseMenu_ExitButton_pressed():
 
 
 func _on_OptionsMenu_ApplyButton_pressed():
-	apply_volume()
+	apply_volume($OptionsMenu/Panel/MasterVolume.value)
 
 
 func _on_OptionsMenu_BackButton_pressed():
@@ -155,9 +158,9 @@ func _on_OptionsMenu_BackButton_pressed():
 
 
 func _on_OptionsMenu_MasterVolume_value_changed(value):
-	apply_volume()
+	apply_volume($OptionsMenu/Panel/MasterVolume.value)
 	
 
-func apply_volume():
-	var volume = $OptionsMenu/Panel/MasterVolume.value * 0.01
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(volume))
+func apply_volume(volume):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(volume * 0.01))
+	SaveManager.save_options({"v": volume})
