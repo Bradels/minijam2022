@@ -14,7 +14,7 @@ var floor_structure = []
 export var random_seed:int
 
 
-var room_type = preload("res://Levels/TestTilemap.tscn")
+var room_type = preload("res://Levels/Rooms/Room1.tscn")
 onready var level = get_tree().get_root().find_node('Level', true, false)
 var directionVectors = {
 		"north": Vector2(0,-1),
