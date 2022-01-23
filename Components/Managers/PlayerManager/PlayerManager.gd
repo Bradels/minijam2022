@@ -13,7 +13,6 @@ var players_node
 
 
 func _ready():
-	print(level)
 	call_deferred('_setup')
 
 
@@ -65,11 +64,16 @@ remote func _remote_transform(props):
 		rpc_unreliable('_remote_transform', props)
 		_apply_transform(props)
 
-	elif get_tree().get_network_sender_id() == 1:
+	elif get_tree().get_rpc_sender_id() == 1:
 		_apply_transform(props)
+	
+	# me host, sender is not host = apply locally and broadcast
+	# me not host, sender is host = apply transform
+	# me not host, sender is not host = nothing
 
 
 func _apply_transform(props):
-	var player = player_nodes[props.id]
-	player.position = props.position
-	player.rotation = props.rotation
+	if player_nodes.has(props.id) && props.id != current_id:
+		var player = player_nodes[props.id]
+		player.position = props.position
+		player.rotation = props.rotation
