@@ -4,7 +4,7 @@ extends '../EntityManager.gd'
 onready var entity = preload("res://Components/Entities/Enemy/Enemy.tscn")
 onready var player_manager = level.find_node('PlayerManager')
 
-export var max_enemies : int = 1
+export var max_enemies : int = 8
 export var spawn_distance : int = 128
 export var spawn_interval : float = 1
 var spawn_delta : float = 0
