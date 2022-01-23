@@ -1,28 +1,18 @@
-extends Node
+extends '../EntityManager.gd'
+
 
 onready var entity = preload("res://Components/Entities/Player/Player.tscn")
-onready var level = get_tree().get_root().find_node('Level', true, false)
-onready var projectile_manager = $ProjectileManager
-
-onready var current_id = get_tree().get_network_unique_id()
-onready var is_host = current_id in [0, 1]
-onready var is_multiplayer = get_tree().has_network_peer()
-
-var player_nodes = {}
-var players_node
-
-
-func _ready():
-	call_deferred('_setup')
+onready var projectile_manager = level.find_node('ProjectileManager')
 
 
 func _setup():
-	players_node = Node2D.new()
-	players_node.name = 'Players'
-	level.add_child(players_node)
+	container_name = 'Players'
+	._setup()
 	_create_nodes()
 	_connect_signals()
-	_spawn_nodes()
+	
+	for id in nodes:
+		_spawn_node(nodes[id])
 
 
 func _create_nodes():
@@ -31,22 +21,17 @@ func _create_nodes():
 			var player = entity.instance()
 			player.id = id
 			player.is_active = id == current_id
-			player_nodes[id] = player
+			nodes[id] = player
 	else:
 		var player = entity.instance()
 		player.is_active = true
-		player_nodes[0] = player
+		nodes[0] = player
 
 
 func _connect_signals():
-	for node in player_nodes.values():
+	for node in nodes.values():
 		node.connect('player_transform', self, '_on_transform')
 		node.connect('projectile_fired', projectile_manager, '_on_projectile_fired')
-
-
-func _spawn_nodes():
-	for id in player_nodes:
-		players_node.add_child(player_nodes[id])
 
 
 func _on_transform(props):
@@ -66,10 +51,10 @@ remote func _remote_transform(props):
 
 	elif get_tree().get_rpc_sender_id() == 1:
 		_apply_transform(props)
-	
+
 
 func _apply_transform(props):
-	if player_nodes.has(props.id) && props.id != current_id:
-		var player = player_nodes[props.id]
+	if nodes.has(props.id) && props.id != current_id:
+		var player = nodes[props.id]
 		player.position = props.position
 		player.rotation = props.rotation

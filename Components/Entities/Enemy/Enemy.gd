@@ -1,18 +1,20 @@
 extends KinematicBody2D
 
+
 enum ENEMY_STATES {IDLE,FOLLOWING,CLAWING,SHOOTING,DYING}
 
+var id = 0
 var velocity = Vector2.ZERO
 
 onready var _animation_player = $AnimationPlayer
 onready var _current_state = ENEMY_STATES.IDLE
 
-#enemy behavior
 export(float) var search_radius = 200
 export(float) var attack_radius = 70
 export(float) var enemy_speed = 45
 export(int) var enemy_health = 2
 export(int) var _enemy_damage = 1
+
 
 func _process(_delta):
 	var nearest_player = get_nearest_player_or_null()
@@ -36,14 +38,16 @@ func _process(_delta):
 		idle()
 	if _current_state == ENEMY_STATES.DYING:
 		death()
-		
-func _physics_process(delta):
+
+
+func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
-	
+
 
 func change_state(newState):
 	if _current_state == ENEMY_STATES.DYING: return
 	_current_state = newState
+
 
 func get_nearest_player_or_null():
 	var _nearest_player = null
@@ -59,6 +63,7 @@ func get_nearest_player_or_null():
 			_lowest_distance = distance_to_player
 	return _nearest_player
 
+
 func follow_player(player):
 	var walk_animation = "Walk"
 	look_at(player.global_position)
@@ -66,10 +71,12 @@ func follow_player(player):
 	if _animation_player.current_animation != walk_animation: _animation_player.queue(walk_animation)
 	pass
 
+
 func idle():
 	var idle_animation = "Idle"
 	velocity = Vector2.ZERO
 	if _animation_player.current_animation != idle_animation: _animation_player.queue(idle_animation)
+
 
 func hurt(amount):
 	if _current_state == ENEMY_STATES.DYING:
@@ -77,9 +84,11 @@ func hurt(amount):
 	enemy_health -= amount
 	_animation_player.play("Hurt")
 
+
 func death():
 	_animation_player.play("Death")
 	velocity = Vector2.ZERO
+
 
 func attack():
 	var attack_animation = "Attack"

@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "GameLocation",
 "language": "GDScript",
 "path": "res://Levels/RandomEnemySpawnTest.gd"
-}, {
-"base": "Node",
-"class": "ProjectileManager",
-"language": "GDScript",
-"path": "res://Components/Managers/ProjectileManager/ProjectileManager.gd"
 } ]
 _global_script_class_icons={
-"GameLocation": "",
-"ProjectileManager": ""
+"GameLocation": ""
 }
 
 [application]

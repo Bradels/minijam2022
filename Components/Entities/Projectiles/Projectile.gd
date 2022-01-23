@@ -1,6 +1,8 @@
 extends Node2D
 
+
 signal projectile_destory(id)
+
 
 var velocity = Vector2()
 var id = ""
@@ -20,12 +22,10 @@ func _process(delta):
 	bullet_alive_time += delta
 	
 	if !sound_byte.playing && (!visible || bullet_alive_time >= projectile_max_life):
-		destroy()
+		queue_free()
+
 
 func _on_Hitbox_body_entered(body):
 	if "Enemy" in body.name:
 		visible = false
 		body.hurt(1)
-
-func destroy():
-	queue_free()
