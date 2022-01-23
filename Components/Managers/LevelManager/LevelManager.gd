@@ -1,13 +1,17 @@
 extends Node
 
+
+onready var Menus = get_tree().get_root().find_node('Menus', true, false)
+
 var is_in_game = false
 var is_paused = false
 
 var LEVELS = {
+	'FLOOR_GENERATOR_TEST': preload('res://Levels/FloorGeneratorTest.tscn'),
+	'FLOOR_TEST': preload('res://Levels/FloorTest.tscn'),
 	'MULTIPLAYER_TEST': preload('res://Levels/MultiplayerTest.tscn'),
 	'SPACESHIP_TEST': preload('res://Levels/SpaceshipTest.tscn'),
-	'FLOOR_TEST': preload('res://Levels/TestFloor.tscn'),
-	'TILEMAP_TEST': preload('res://Levels/TestTilemap.tscn'),
+	'TILEMAP_TEST': preload('res://Levels/TilemapTest.tscn'),
 }
 
 
@@ -26,3 +30,6 @@ func change_level(level):
 func exit():
 	_reset_level()
 	is_in_game = false
+	is_paused = false
+	Menus.change_menu('MAIN')
+	

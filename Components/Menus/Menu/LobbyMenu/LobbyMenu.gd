@@ -27,7 +27,7 @@ func _on_click_leave():
 
 
 func _on_click_start():
-	LevelManager.change_level('MULTIPLAYER_TEST')
+	LevelManager.change_level('FLOOR_GENERATOR_TEST')
 	_close_menu()
 
 

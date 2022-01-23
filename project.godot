@@ -19,8 +19,8 @@ config/icon="res://icon.png"
 
 Server="*res://Components/Server.gd"
 NetworkManager="*res://Components/Managers/NetworkManager.gd"
-SaveManager="*res://Components/SaveManager.gd"
-AudioManager="*res://Components/AudioManager.gd"
+SaveManager="*res://Components/Managers/SaveManager.gd"
+AudioManager="*res://Components/Managers/AudioManager.gd"
 
 [display]
 
