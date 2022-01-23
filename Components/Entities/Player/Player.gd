@@ -58,15 +58,19 @@ func _physics_process(_delta):
 
 
 func _process(delta):
-	_emit_transform()
-	
 	if is_active:
+		_emit_transform()
+	
 		if Input.is_action_pressed("pawn_fire"):
 			fire(delta)
 
 
 func _emit_transform():
-	emit_signal('player_transform', self)
+	emit_signal('player_transform', {
+		'id': id,
+		'position': position,
+		'rotation': rotation,
+	})
 
 
 func fire(delta):
