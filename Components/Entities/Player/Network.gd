@@ -7,8 +7,8 @@ onready var object = get_parent()
 func _ready():
 	var id = get_tree().get_network_unique_id()
 	is_host = (id == 1 || id == 0)
-	object.connect("entity_updated",self,"_on_entity_updated")
-	object.connect("entity_creates_entity",self,"_on_entity_spawns")
+	#object.connect("entity_updated",self,"_on_entity_updated")
+	#object.connect("entity_creates_entity",self,"_on_entity_spawns")
 
 
 func _process(_delta):

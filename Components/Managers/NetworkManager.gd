@@ -8,7 +8,7 @@ var local_player
 func _ready():
 	var id = get_tree().get_network_unique_id()
 	is_host = (id == 1 || id == 0)
-	var _result = connect("entity_moved", self, "_on_entity_moved")
+	#var _result = connect("entity_moved", self, "_on_entity_moved")
 
 
 func _on_entity_updated(_entity, props):

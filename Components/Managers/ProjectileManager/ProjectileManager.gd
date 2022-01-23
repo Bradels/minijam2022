@@ -25,7 +25,7 @@ func _on_projectile_fired(props) -> void:
 	var position = props["position"]
 	var rotation = props["rotation"]
 	var velocity = props["velocity"]
-	var ownerid = props["owner_id"]
+	var owner_id = props["owner_id"]
 	
 	
 	spawn_projectile(
@@ -33,7 +33,8 @@ func _on_projectile_fired(props) -> void:
 		position,
 		rotation,
 		velocity,
-		str(ownerid))
+		"",
+		str(owner_id))
 		
 	if is_multiplayer: rpc(
 		"spawn_projectile",
@@ -41,7 +42,7 @@ func _on_projectile_fired(props) -> void:
 		position,
 		rotation,
 		velocity,
-		str(ownerid)
+		str(owner_id)
 		)
 
 remote func spawn_projectile(
@@ -50,17 +51,30 @@ remote func spawn_projectile(
 	rotation:float,
 	velocity:Vector2 = Vector2.ZERO,
 	id:String = "",
-	ownerid:String = "") -> String:
+	owner_id:String = "") -> String:
 		var scene = _look_up_projectile(type)
 		var instance = scene.instance()
-		level.add_child(instance)
+		projectile_node.add_child(instance)
 		instance.position = posistion
 		instance.rotation = rotation
 		instance.velocity = velocity
-		if id == "": id = ownerid+instance.get_instance_id()
+		if id == "": id = owner_id+str(instance.get_instance_id())
+		instance.id = id
+		instance.owner_id = owner_id
 		projectiles[id] = instance
+		instance.connect("tree_exited",self,"_on_projectile_destroyed",[id],4)
 		return id
 	
+
+func _on_projectile_destroyed(id) -> void:
+	projectiles.erase(id)
+	
+	if is_multiplayer:
+		rpc("_destory_projectile",id)
+
+remote func _destroy_projectile(id:String) ->void:
+	if projectiles.has(id):
+		projectiles[id].destroy()
 
 func _look_up_projectile(projectile_type:int) -> PackedScene:
 	if projectile_type == PROJECTILE_TYPE.SHIP_PRIMARY:
