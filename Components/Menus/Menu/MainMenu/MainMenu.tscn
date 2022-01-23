@@ -13,15 +13,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -141.0
+margin_top = -312.0
+margin_right = -61.0
+margin_bottom = -268.0
+text = " Play"
+align = 2
+
 [node name="HostButton" parent="." instance=ExtResource( 3 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -287.0
-margin_top = -317.0
-margin_right = -105.0
-margin_bottom = -273.0
+margin_left = -243.0
+margin_top = -259.0
+margin_right = -61.0
+margin_bottom = -215.0
 text = "Host Game"
 align = 2
 
@@ -30,10 +42,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -276.0
-margin_top = -263.0
-margin_right = -105.0
-margin_bottom = -219.0
+margin_left = -232.0
+margin_top = -205.0
+margin_right = -61.0
+margin_bottom = -161.0
 text = "Join Game"
 align = 2
 
@@ -42,10 +54,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -234.0
-margin_top = -212.0
-margin_right = -105.0
-margin_bottom = -168.0
+margin_left = -190.0
+margin_top = -154.0
+margin_right = -61.0
+margin_bottom = -110.0
 text = "Options"
 align = 2
 
@@ -54,9 +66,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -176.0
-margin_top = -158.0
-margin_right = -105.0
-margin_bottom = -114.0
+margin_left = -132.0
+margin_top = -100.0
+margin_right = -61.0
+margin_bottom = -56.0
 text = "Exit"
 align = 2

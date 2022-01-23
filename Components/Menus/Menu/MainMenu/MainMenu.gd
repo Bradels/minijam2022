@@ -1,10 +1,11 @@
 extends '../Menu.gd'
 
 
-onready var host_button = $HostButton
-onready var join_button = $JoinButton
-onready var options_button = $OptionsButton
-onready var exit_button = $ExitButton
+onready var PlayButton = $PlayButton
+onready var HostButton = $HostButton
+onready var JoinButton = $JoinButton
+onready var OptionsButton = $OptionsButton
+onready var ExitButton = $ExitButton
 
 
 func _ready():
@@ -13,10 +14,15 @@ func _ready():
 
 
 func _connect():
-	host_button.connect('click', self, '_on_click_host')
-	join_button.connect('click', self, '_on_click_join')
-	options_button.connect('click', self, '_on_click_options')
-	exit_button.connect('click', self, '_on_click_exit')
+	PlayButton.connect('click', self, '_on_click_play')
+	HostButton.connect('click', self, '_on_click_host')
+	JoinButton.connect('click', self, '_on_click_join')
+	OptionsButton.connect('click', self, '_on_click_options')
+	ExitButton.connect('click', self, '_on_click_exit')
+
+
+func _on_click_play():
+	_change_menu('LEVEL')
 
 
 func _on_click_host():

@@ -10,6 +10,7 @@ var menu
 
 var MENUS = {
 	'MAIN': preload('Menu/MainMenu/MainMenu.tscn'),
+	'LEVEL': preload('Menu/LevelMenu/LevelMenu.tscn'),
 	'HOST': preload('Menu/HostMenu/HostMenu.tscn'),
 	'LOBBY': preload('Menu/LobbyMenu/LobbyMenu.tscn'),
 	'JOIN': preload('Menu/JoinMenu/JoinMenu.tscn'),

@@ -17,10 +17,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Str="*res://Lib/Str.gd"
 Server="*res://Components/Server.gd"
-NetworkManager="*res://Components/Managers/NetworkManager.gd"
 SaveManager="*res://Components/Managers/SaveManager.gd"
-AudioManager="*res://Components/Managers/AudioManager.gd"
 
 [display]
 
