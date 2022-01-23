@@ -6,31 +6,6 @@
 [sub_resource type="CircleShape2D" id=22]
 radius = 13.0
 
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 144, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 288, 48, 48 )
-
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 2 )
@@ -101,13 +76,33 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 144, 192, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 48, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 96, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 144, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 192, 288, 48, 48 )
+
 [sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
-"loop": true,
-"name": "claw_attack",
-"speed": 12.0
-}, {
 "frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
 "loop": true,
 "name": "idle",
@@ -116,6 +111,11 @@ animations = [ {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": true,
 "name": "default",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "claw_attack",
 "speed": 12.0
 } ]
 
@@ -265,6 +265,7 @@ tracks/0/keys = {
 radius = 13.0
 
 [node name="Enemy" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]

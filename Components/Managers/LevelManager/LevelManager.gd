@@ -32,4 +32,4 @@ func exit():
 	is_in_game = false
 	is_paused = false
 	Menus.change_menu('MAIN')
-	
+

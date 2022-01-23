@@ -6,12 +6,14 @@ signal player_disconnected()
 signal connection_successful()
 
 
-var network
+var active = false
 var hosting = false
 var players = {}
+var network
 
 
 func start_server(port, max_players):
+	active = true
 	hosting = true
 	network = NetworkedMultiplayerENet.new()
 	network.create_server(port, max_players)
@@ -22,14 +24,19 @@ func start_server(port, max_players):
 	
 
 func close_server():
+	active = false
+	
 	if hosting:
+		hosting = false
 		rpc("player_disconnecting")
 	else:
 		rpc_id(1, "player_disconnecting")
+	
 	get_tree().set_network_peer(null)
 	
 
 func join_server(ip, port):
+	active = true
 	hosting = false
 	network = NetworkedMultiplayerENet.new()
 	network.create_client(ip, port)

@@ -26,6 +26,7 @@ func _on_resume():
 
 func _on_exit_menu():
 	LevelManager.exit()
+	Server.close_server()
 
 
 func _on_exit_game():

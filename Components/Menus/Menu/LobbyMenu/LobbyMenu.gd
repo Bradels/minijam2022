@@ -27,11 +27,17 @@ func _on_click_leave():
 
 
 func _on_click_start():
-	LevelManager.change_level('FLOOR_GENERATOR_TEST')
-	_close_menu()
-
+	_start_game()
+	
+	if Server.active && Server.hosting:
+		rpc('_start_game')
 
 func _update_lobby():
 	PlayerList.clear()
 	for player in Server.players.values():
 		PlayerList.add_item(player['name'])
+
+
+remote func _start_game():
+	LevelManager.change_level('FLOOR_GENERATOR_TEST')
+	_close_menu()
