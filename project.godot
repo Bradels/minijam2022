@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "ProjectileManager",
+"language": "GDScript",
+"path": "res://Components/Managers/ProjectileManager/ProjectileManager.gd"
+} ]
+_global_script_class_icons={
+"ProjectileManager": ""
+}
+
 [application]
 
 config/name="mini-jam-jan-2022"

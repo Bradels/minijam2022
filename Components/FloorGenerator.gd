@@ -11,12 +11,14 @@ class RoomInformation:
 	var position:Vector2
 
 var floor_structure = []
+export var random_seed:int
+
 
 var floor_image = preload("res://Assets/Textures/Spaceship.png")
 onready var level = get_tree().get_root().find_node('Level', true, false)
 var directionVectors = {
-		"north": Vector2(0,1),
-		"south": Vector2(0,-1),
+		"north": Vector2(0,-1),
+		"south": Vector2(0,1),
 		"east" : Vector2(1,0),
 		"west" : Vector2(-1,0)
 	}
@@ -46,6 +48,7 @@ func generate_floor(length:int):
 	pass
 
 func get_random_direction(position:Vector2,nbias = 80, sbias = 1, ebias = 10, wbias = 10):
+	randomize()
 	var random_direction = get_free_direction(position)
 	var outcomes = {
 		"north": randi()%nbias,
@@ -55,6 +58,7 @@ func get_random_direction(position:Vector2,nbias = 80, sbias = 1, ebias = 10, wb
 		}
 	for direction in outcomes:
 		if (outcomes[direction] > outcomes[direction]) && is_position_free(position+directionVectors[direction]): random_direction
+	print(random_direction)
 	return random_direction
 
 func get_free_direction(position:Vector2):
