@@ -4,7 +4,7 @@ extends KinematicBody2D
 signal player_transform(player)
 signal projectile_fired(projectile, props)
 
-var fire_rate : float = 2
+var fire_rate : float = 25
 onready var bullet_delta : float = 1 / fire_rate
 var bullet_speed : int = 1024
 var bullet_time : float = 0

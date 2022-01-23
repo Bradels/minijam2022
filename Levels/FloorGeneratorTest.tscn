@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Components/Managers/PlayerManager/PlayerManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Components/Managers/ProjectileManager/ProjectileManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Managers/EnemyManager/EnemyManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/FloorGenerator.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Textures/Starfield.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Planet.png" type="Texture" id=6]
+
+[node name="Level" type="Node2D"]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="PlayerManager" parent="Managers" instance=ExtResource( 1 )]
+
+[node name="ProjectileManager" parent="Managers" instance=ExtResource( 2 )]
+
+[node name="EnemyManager" parent="Managers" instance=ExtResource( 3 )]
+
+[node name="FloorGenerator" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Background" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2( 1024, 1024 )
+scroll_ignore_camera_zoom = true
+
+[node name="Layer2" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2( 5, 5 )
+motion_offset = Vector2( 1024, 1024 )
+
+[node name="Sprite" type="Sprite" parent="Background/Layer2"]
+position = Vector2( 136, 598 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Layer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 1024, 1024 )
+
+[node name="Starfield" type="Sprite" parent="Background/Layer"]
+z_index = -1
+texture = ExtResource( 5 )
+centered = false
