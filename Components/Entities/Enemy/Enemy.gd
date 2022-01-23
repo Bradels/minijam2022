@@ -119,11 +119,9 @@ func hurt(amount):
 
 
 func death():
-	print('starting death')
 	_play_animation('Death')
 	_set_velocity(Vector2.ZERO)
 	dead = true
-	print('dead')
 
 
 func attack():
@@ -133,5 +131,4 @@ func attack():
 
 func _on_animation_finished(name):
 	if name == 'Death':
-		print('finished animation')
 		emit_signal('died', id)
