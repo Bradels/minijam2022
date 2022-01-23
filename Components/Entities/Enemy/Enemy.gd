@@ -45,7 +45,9 @@ func _set_velocity(new_velocity):
 
 
 func _play_animation(name):
-	if _animation_player.current_animation != name:
+	if _animation_player.current_animation in ['Hurt', 'Dying']:
+		_animation_player.queue(name)
+	elif _animation_player.current_animation != name:
 		_animation_player.play(name)
 
 

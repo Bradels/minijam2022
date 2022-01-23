@@ -275,7 +275,8 @@ shape = SubResource( 22 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 23 )
-animation = "claw_attack"
+animation = "idle"
+frame = 3
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
