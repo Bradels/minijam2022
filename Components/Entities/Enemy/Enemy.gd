@@ -8,11 +8,12 @@ enum ENEMY_STATES { IDLE, FOLLOWING, CLAWING, SHOOTING, DYING }
 
 var id = ''
 var velocity = Vector2.ZERO
-var nearest_player
+var nearest_player = null
 
+onready var animation_player = $AnimationPlayer
 onready var is_host = get_tree().get_network_unique_id() in [0, 1]
-onready var _animation_player = $AnimationPlayer
 
+export(bool) var dead = false
 export(int) var health = 2
 export(int) var damage = 1
 export(float) var speed = 48
@@ -21,34 +22,41 @@ export(float) var attack_radius = 64
 
 
 func _process(_delta):
+	if dead:
+		return
+
 	set_nearest_player_or_null()
 	
 	match _determine_state():
-		ENEMY_STATES.CLAWING:
-			attack()
-		ENEMY_STATES.FOLLOWING:
-			follow_player()
 		ENEMY_STATES.IDLE:
 			idle()
+		ENEMY_STATES.FOLLOWING:
+			follow_player()
+		ENEMY_STATES.CLAWING:
+			attack()
 		ENEMY_STATES.DYING:
 			death()
 
 
 func _physics_process(_delta):
-	if is_host:
+	if is_host && !dead:
 		velocity = move_and_slide(velocity)
 
 
 func _set_velocity(new_velocity):
-	if is_host:
+	if is_host && !dead:
 		velocity = new_velocity
 
 
 func _play_animation(name):
-	if _animation_player.current_animation in ['Hurt', 'Dying']:
-		_animation_player.queue(name)
-	elif _animation_player.current_animation != name:
-		_animation_player.play(name)
+	var current = animation_player.current_animation
+	
+	if current == 'Death': return
+	if name == 'Death': return animation_player.play(name)
+	if name == 'Hurt': return animation_player.play(name)
+	if current == 'Attack': return
+	
+	animation_player.play(name)
 
 
 func _look_at(rotation):
@@ -105,16 +113,16 @@ func idle():
 
 
 func hurt(amount):
-	if health <= 0:
-		return
-
 	_play_animation("Hurt")
 	health -= amount
 
 
 func death():
-	_play_animation("Death")
+	print('starting death')
+	_play_animation('Death')
 	_set_velocity(Vector2.ZERO)
+	dead = true
+	print('dead')
 
 
 func attack():
@@ -122,6 +130,7 @@ func attack():
 	_play_animation('Attack')
 
 
-func _on_AnimationPlayer_animation_finished(name):
+func _on_animation_finished(name):
 	if name == 'Death':
+		print('finished animation')
 		emit_signal('died', id)

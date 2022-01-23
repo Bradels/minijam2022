@@ -4,7 +4,7 @@ extends '../EntityManager.gd'
 onready var entity = preload("res://Components/Entities/Enemy/Enemy.tscn")
 onready var player_manager = level.find_node('PlayerManager')
 
-export var max_enemies : int = 8
+export var max_enemies : int = 1
 export var spawn_distance : int = 128
 export var spawn_interval : float = 1
 var spawn_delta : float = 0
@@ -16,7 +16,7 @@ func _setup():
 
 func _process(delta):
 	if !is_host:
-		return
+		return 
 	
 	_maybe_spawn_enemy(delta)
 	
@@ -30,11 +30,14 @@ func _process(delta):
 func _maybe_spawn_enemy(delta):
 	spawn_delta += delta
 	
-	if (spawn_delta > spawn_interval && nodes.size() < max_enemies):
+	if nodes.size() >= max_enemies:
 		spawn_delta = 0
-		
-		var enemy = _spawn_enemy(_get_spawn_position())
+		return
 	
+	if spawn_delta > spawn_interval:
+		spawn_delta = 0
+		var enemy = _spawn_enemy(_get_spawn_position())
+		
 		if is_multiplayer:
 			rpc('_remote_spawn', enemy.id, enemy.position)
 
@@ -57,8 +60,9 @@ func _get_spawn_position():
 
 
 func _on_died(id):
+	_destroy_node_by_id(id)
+
 	if is_host && is_multiplayer:
-		_erase_node_by_id(id)
 		rpc("_destroy_node_by_id", id)
 
 
