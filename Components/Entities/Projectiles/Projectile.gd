@@ -27,5 +27,6 @@ func _on_Hitbox_body_entered(body):
 		return
 
 	if "Enemy" in body.name:
-		visible = false
 		body.hurt(1)
+	
+	visible = false
