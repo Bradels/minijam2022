@@ -9,7 +9,7 @@ var is_in_game = false
 
 func _ready():
 	var options_save = SaveManager.load_options()
-	if options_save != {}:
+	if !options_save.empty():
 		$OptionsMenu/Panel/MasterVolume.value = options_save["v"]
 		
 	Server.connect("player_connected", self, "_on_player_connected")
