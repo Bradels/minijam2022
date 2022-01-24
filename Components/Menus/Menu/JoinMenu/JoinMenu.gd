@@ -53,5 +53,5 @@ func _on_port_changed(text):
 
 
 func _on_connected():
-	Server.set_player_data({ "name": player_name })
+	Server.set_player_data({ "name": player_name, "health": randi() % 32 })
 	_change_menu('LOBBY')

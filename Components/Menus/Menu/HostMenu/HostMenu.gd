@@ -37,7 +37,7 @@ func _on_click_back():
 
 func _on_click_host():
 	Server.start_server(server_port, max_players)
-	Server.set_player_data({ "name": player_name })
+	Server.set_player_data({ "name": player_name, "health": randi() % 32 })
 	_change_menu('LOBBY')
 
 

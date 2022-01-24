@@ -15,6 +15,7 @@ onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
 var id = 0
+var health = 21
 var is_active = false
 
 

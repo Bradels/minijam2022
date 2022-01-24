@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Components/Entities/Player/HUD/PlayerPanel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/Textures/Hearts.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 68, 0, 17, 17 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 51, 0, 17, 17 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 34, 0, 17, 17 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 17, 0, 17, 17 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 17, 17 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="PlayerPanel" type="Panel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 264.0
+margin_bottom = 40.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerLabel" type="Label" parent="."]
+margin_left = 12.0
+margin_top = 4.0
+margin_right = 66.0
+margin_bottom = 25.0
+text = "Player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart1" type="AnimatedSprite" parent="."]
+position = Vector2( 128, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart2" type="AnimatedSprite" parent="."]
+position = Vector2( 144, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart3" type="AnimatedSprite" parent="."]
+position = Vector2( 160, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart4" type="AnimatedSprite" parent="."]
+position = Vector2( 176, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart5" type="AnimatedSprite" parent="."]
+position = Vector2( 192, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart6" type="AnimatedSprite" parent="."]
+position = Vector2( 208, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart7" type="AnimatedSprite" parent="."]
+position = Vector2( 224, 16 )
+frames = SubResource( 6 )
+
+[node name="Heart8" type="AnimatedSprite" parent="."]
+position = Vector2( 240, 16 )
+frames = SubResource( 6 )

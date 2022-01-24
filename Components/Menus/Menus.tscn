@@ -21,6 +21,7 @@ default_font = SubResource( 1 )
 Label/colors/font_color = Color( 0.627451, 0.74902, 0.74902, 1 )
 
 [node name="Menus" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 3 )
 
 [node name="Background" type="Control" parent="."]
