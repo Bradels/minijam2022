@@ -20,7 +20,6 @@ func _setup():
 	container.name = container_name
 	level.add_child(container)
 
-
 func _append_node(node):
 	nodes[node.id] = node
 
@@ -50,3 +49,54 @@ func _random_node():
 func _spawn_node(node):
 	_append_node(node)
 	container.add_child(node)
+	_connect_signal(node)
+
+func _connect_signal(node):
+	print(node)
+	node.connect('entity_transform', self, '_on_transform')
+	node.connect('entity_prop_updated', self, '_on_entity_prop_updated')
+
+func _on_transform(props):
+	if !is_multiplayer:
+		return
+		
+	if is_host:
+		rpc_unreliable('_remote_transform', props)
+	else:
+		rpc_unreliable_id(1, '_remote_transform', props)
+
+remote func _remote_transform(props):
+	if is_host:
+		rpc_unreliable('_remote_transform', props)
+		_apply_transform(props)
+
+	elif get_tree().get_rpc_sender_id() == 1:
+		_apply_transform(props)
+
+func _apply_transform(props):
+	if nodes.has(props.id) && props.id != current_id:
+		var player = nodes[props.id]
+		player.position = props.position
+		player.rotation = props.rotation
+
+func _on_entity_prop_updated(id,prop,value):
+	if !is_multiplayer:
+		return
+
+	if is_host:
+		rpc("_remote_update_prop",id,prop,value)
+	else:
+		rpc_id(1,"_remote_update_prop",id,prop,value)
+
+func _remote_update_prop(id,prop,value):
+	if is_host:
+		rpc("_remote_update_prop",id,prop,value)
+		_apply_entity_prop(id,prop,value)
+		
+	elif get_tree().get_rpc_sender_id() == 1:
+		_apply_entity_prop(id,prop,value)
+
+func _apply_entity_prop(id,prop,value):
+	if nodes.has(id) && nodes[id].has(prop):
+		if is_host:
+			nodes[id[prop]] = value

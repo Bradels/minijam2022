@@ -1,8 +1,10 @@
 extends Node2D
 
+signal entity_transform(transformed_values)
+signal entity_prop_updated(prop,value)
 
 var velocity = Vector2()
-var id = ""
+var id = ''
 var owner_id = ""
 onready var scene_path = get_tree().current_scene.filename
 onready var Hitbox = $Hitbox

@@ -1,7 +1,5 @@
-extends KinematicBody2D
+extends "res://Components/Entities/Entity.gd"
 
-
-signal player_transform(player)
 signal projectile_fired(projectile, props)
 
 var fire_rate : float = 4
@@ -14,9 +12,7 @@ onready var _camera = $Camera
 onready var _nozzle = $Nozzle
 onready var _sprite = $AnimatedSprite
 
-var id = 0
 var health = 21
-var is_active = false
 
 
 func _ready():
@@ -61,22 +57,15 @@ func _physics_process(_delta):
 func _process(delta):
 	if is_active:
 		_elapse_time(delta)
-		_emit_transform()
-	
+		
 		if Input.is_action_pressed("pawn_fire"):
 			fire()
+			
+		._process(delta)
 
 
 func _elapse_time(delta):
 	bullet_time += delta
-
-
-func _emit_transform():
-	emit_signal('player_transform', {
-		'id': id,
-		'position': position,
-		'rotation': rotation,
-	})
 
 
 func fire():

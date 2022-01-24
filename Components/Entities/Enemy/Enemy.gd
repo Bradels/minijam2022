@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://Components/Entities/Entity.gd"
 
 
 signal died(id)
@@ -6,12 +6,12 @@ signal died(id)
 
 enum ENEMY_STATES { IDLE, FOLLOWING, CLAWING, SHOOTING, DYING }
 
-var id = ''
 var velocity = Vector2.ZERO
 var nearest_player = null
 
 onready var animation_player = $AnimationPlayer
-onready var is_host = get_tree().get_network_unique_id() in [0, 1]
+#onready var is_host = get_tree().get_network_unique_id() in [0, 1]
+onready var hurt_box = $HurtBox
 
 export(bool) var dead = false
 export(int) var health = 2
@@ -22,6 +22,7 @@ export(float) var attack_radius = 64
 
 
 func _process(_delta):
+	._process(_delta)
 	if dead:
 		return
 
@@ -39,12 +40,12 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-	if is_host && !dead:
+	if !dead:
 		velocity = move_and_slide(velocity)
 
 
 func _set_velocity(new_velocity):
-	if is_host && !dead:
+	if !dead:
 		velocity = new_velocity
 
 
@@ -61,7 +62,6 @@ func _play_animation(name):
 
 
 func _look_at(rotation):
-	if is_host:
 		look_at(rotation)
 
 

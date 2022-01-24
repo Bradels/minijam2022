@@ -17,14 +17,7 @@ func _setup():
 func _process(delta):
 	if !is_host:
 		return 
-	
 	_maybe_spawn_enemy(delta)
-	
-	if is_multiplayer:
-		for node in nodes.values():
-			var ref = weakref(node)
-			if ref.get_ref():
-				rpc_unreliable('_remote_transform', node.id, node.position, node.rotation)
 
 
 func _maybe_spawn_enemy(delta):
@@ -68,9 +61,3 @@ func _on_died(id):
 
 remote func _remote_spawn(id, position):
 	_spawn_enemy(position, id)
-
-
-remote func _remote_transform(id, position, rotation):
-	if nodes.has(id):
-		nodes[id].position = position
-		nodes[id].rotation = rotation
