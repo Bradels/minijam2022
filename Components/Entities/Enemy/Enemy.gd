@@ -127,8 +127,17 @@ func death():
 func attack():
 	_look_at(nearest_player.global_position)
 	_play_animation('Attack')
-
+	
 
 func _on_animation_finished(name):
 	if name == 'Death':
 		emit_signal('died', id)
+
+#Called at particular time in attack animations
+func _attack_damage_instance():
+	for body in hurt_box.get_overlapping_bodies():
+		if body.is_in_group("Players"):
+			_trigger_entity_damage(body)
+
+func _trigger_entity_damage(entity):
+	entity.damage(damage)

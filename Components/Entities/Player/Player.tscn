@@ -27,7 +27,7 @@ frame = 3
 [node name="Nozzle" type="Node2D" parent="."]
 position = Vector2( 25, 7 )
 
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="." groups=["Player_Hit_Box"]]
 shape = SubResource( 12 )
 
 [node name="Hitbox" type="Area2D" parent="."]

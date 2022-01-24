@@ -52,7 +52,6 @@ func _spawn_node(node):
 	_connect_signal(node)
 
 func _connect_signal(node):
-	print(node)
 	node.connect('entity_transform', self, '_on_transform')
 	node.connect('entity_prop_updated', self, '_on_entity_prop_updated')
 
