@@ -48,15 +48,15 @@ __meta__ = {
 }
 
 [node name="BackButton" parent="Panel" instance=ExtResource( 2 )]
-margin_left = 105.0
-margin_top = 247.0
-margin_right = 164.993
-margin_bottom = 287.448
+margin_left = 98.0
+margin_top = 248.0
+margin_right = 162.0
+margin_bottom = 288.448
 text = "Back"
 
 [node name="ApplyButton" parent="Panel" instance=ExtResource( 2 )]
-margin_left = 179.0
-margin_top = 247.0
-margin_right = 238.993
-margin_bottom = 287.448
+margin_left = 178.0
+margin_top = 248.0
+margin_right = 242.0
+margin_bottom = 288.448
 text = "Apply"

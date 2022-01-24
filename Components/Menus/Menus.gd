@@ -27,6 +27,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed('ui_cancel') && !LevelManager.is_paused:
 		LevelManager.is_paused = true
 		change_menu('PAUSE')
+		
+	background.get_node("PlanetPath/PathFollow").offset += 10 * _delta
+	var s = (sin(float(OS.get_ticks_msec()) * _delta * 0.01) * 0.1) + 1
+	background.get_node("Title").rect_scale = Vector2(s, s)
 
 
 func _cleanup():

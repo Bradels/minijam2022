@@ -82,15 +82,15 @@ __meta__ = {
 }
 
 [node name="HostButton" parent="Panel" instance=ExtResource( 2 )]
-margin_left = 185.0
-margin_top = 185.0
-margin_right = 240.993
-margin_bottom = 225.448
+margin_left = 178.0
+margin_top = 184.0
+margin_right = 242.0
+margin_bottom = 224.448
 text = "Host"
 
 [node name="BackButton" parent="Panel" instance=ExtResource( 2 )]
-margin_left = 117.0
-margin_top = 185.0
-margin_right = 176.993
-margin_bottom = 225.448
+margin_left = 98.0
+margin_top = 184.0
+margin_right = 162.0
+margin_bottom = 224.448
 text = "Back"
