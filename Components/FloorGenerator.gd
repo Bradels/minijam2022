@@ -1,5 +1,10 @@
 extends Node
 
+onready var current_id = get_tree().get_network_unique_id()
+onready var is_host = current_id in [0, 1]
+onready var is_multiplayer = get_tree().has_network_peer()
+export(String) var level_seed = "test"
+var gen_seed
 var room_types = [
 	preload("res://Levels/Rooms/Room1.tscn"),
 	preload("res://Levels/Rooms/Room2.tscn")
@@ -33,7 +38,25 @@ var inverse_direction = {
 	}
 
 func _ready():
+	if is_host:
+		_generate_level()
+	elif is_multiplayer:
+		rpc('_client_request_seed')
+
+
+remote func _client_receive_seed(gen_seed):
+	self.gen_seed = gen_seed
+	_generate_level()
+
+remote func _client_request_seed():
+	if is_host:
+		rpc("_client_receive_seed",gen_seed)
+		
+func _generate_level():
 	generate_floor(10)
+	add_floors_to_scene()
+
+func add_floors_to_scene():
 	for room in floor_structure:
 		var rand_index:int = randi() % room_types.size()
 		var room_instance = room_types[rand_index].instance()
@@ -46,7 +69,7 @@ func _ready():
 
 func generate_floor(length:int):
 	var initial_room = RoomInformation.new()
-	initial_room.position = Vector2(-0.5,-0.5)
+	initial_room.position = Vector2(-0.3,-0.3)
 	floor_structure.push_front(initial_room)
 	for current_floor in range(length):
 		var room_at_front = floor_structure.front()
@@ -61,7 +84,6 @@ func generate_floor(length:int):
 	pass
 
 func get_random_direction(position:Vector2,nbias = 50, sbias = 50, ebias = 80, wbias = 80):
-	randomize()
 	var random_direction = get_free_direction(position)
 	var outcomes = {
 		"north": randi()%nbias,
