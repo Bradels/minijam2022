@@ -32,6 +32,7 @@ func _on_click_start():
 	if Server.active && Server.hosting:
 		rpc('_start_game')
 
+
 func _update_lobby():
 	PlayerList.clear()
 	for player in Server.players.values():

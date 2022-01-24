@@ -26,5 +26,3 @@ shape = SubResource( 8 )
 stream = ExtResource( 1 )
 volume_db = -10.0
 pitch_scale = 0.5
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

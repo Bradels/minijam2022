@@ -21,7 +21,7 @@ func _connect():
 	back_button.connect('click', self, '_on_click_back')
 	join_button.connect('click', self, '_on_click_join')
 	name_input.connect('text_changed', self, '_on_name_changed')
-	host_input.connect('text_changed', self, '_on_port_changed')
+	host_input.connect('text_changed', self, '_on_host_changed')
 	port_input.connect('text_changed', self, '_on_port_changed')
 	Server.connect('connection_successful', self, '_on_connected')
 
