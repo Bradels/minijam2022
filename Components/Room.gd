@@ -19,3 +19,19 @@ var doors = {
 func add_door(direction):
 	for door_pos in doors[direction]:
 		walls.set_cell(door_pos.x,door_pos.y,4)
+
+func get_random_free_position():
+	for attempts in range(10):
+		var x = randi() % walls.size.x
+		var y = randi() % walls.size.y
+		if is_cell_free(x,y):
+			return walls.map_to_world(Vector2(x,y))
+	return null
+		
+
+func is_cell_free(x,y):
+	var cell = walls.get_cell(x,y)
+	if cell in [0,-1]:
+		return true
+	else:
+		return false

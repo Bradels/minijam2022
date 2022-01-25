@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Components/Entities/Player/HUD/FloorPanel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Themes/MenuWidgetTheme.tres" type="Theme" id=2]
+
+[node name="RoomPanel" type="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -108.0
+margin_bottom = 32.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomLabel" type="Label" parent="."]
+margin_left = 12.0
+margin_top = 4.0
+margin_right = 66.0
+margin_bottom = 25.0
+text = "Room: "
+__meta__ = {
+"_edit_use_anchors_": false
+}

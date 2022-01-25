@@ -3,6 +3,7 @@ extends '../EntityManager.gd'
 
 onready var entity = preload("res://Components/Entities/Player/Player.tscn")
 onready var projectile_manager = level.find_node('ProjectileManager')
+onready var floor_manager = level.find_node('FloorManager')
 
 
 func _setup():
@@ -14,6 +15,11 @@ func _setup():
 		_spawn_node(nodes[id])
 		_connect_signal(nodes[id])
 
+func _on_transform(props):
+	var current_room = floor_manager._position_to_room(props.position)
+	if current_room != null:
+		nodes[props.id]._update_entity_prop("current_room",current_room.number)
+	._on_transform(props)
 
 func _create_nodes():
 	if is_multiplayer:
@@ -31,9 +37,3 @@ func _create_nodes():
 func _connect_signal(node):
 	node.connect('projectile_fired', projectile_manager, '_on_projectile_fired')
 	._connect_signal(node)
-
-func _apply_transform(props):
-	if nodes.has(props.id) && props.id != current_id:
-		var player = nodes[props.id]
-		player.position = props.position
-		player.rotation = props.rotation

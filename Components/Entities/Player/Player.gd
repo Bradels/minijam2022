@@ -7,6 +7,7 @@ onready var bullet_delta : float = 1 / fire_rate
 var bullet_speed : int = 1024
 var bullet_time : float = 0
 var move_speed : int = 256
+var current_room = 0
 
 export(Color) var ghost_color = Color(0.7,0.9,0.2,0.2)
 var is_ghost

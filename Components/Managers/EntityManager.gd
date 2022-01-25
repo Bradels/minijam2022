@@ -98,4 +98,4 @@ func _remote_update_prop(id,prop,value):
 func _apply_entity_prop(id,prop,value):
 	if nodes.has(id) && nodes[id].has(prop):
 		if is_host:
-			nodes[id[prop]] = value
+			nodes[id]._apply_remote_prop(prop,value)

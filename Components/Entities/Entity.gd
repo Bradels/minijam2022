@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal entity_transform(transformed_values)
-signal entity_prop_updated(prop,value)
+signal entity_prop_updated(id,prop,value)
 
 var id = 0
 var is_active = false
@@ -12,6 +12,8 @@ func _process(_delta):
 		_emit_transform()
 
 func _update_entity_prop(prop,value):
+	self[prop] = value
+	emit_signal("entity_prop_updated",id,prop,value)
 	pass
 
 func _emit_transform():
@@ -20,3 +22,6 @@ func _emit_transform():
 		'position': position,
 		'rotation': rotation,
 	})
+
+func _apply_remote_prop_update(prop,value):
+	self[prop] = value
