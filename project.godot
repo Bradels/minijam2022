@@ -9,13 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Cardinals",
+"language": "GDScript",
+"path": "res://Lib/Cardinals.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://Components/Entities/Entity.gd"
+}, {
+"base": "Reference",
+"class": "ExtendedArray",
+"language": "GDScript",
+"path": "res://Lib/ExtendedArray.gd"
+}, {
+"base": "Reference",
+"class": "FloorGenerator",
+"language": "GDScript",
+"path": "res://Components/FloorGenerator.gd"
 } ]
 _global_script_class_icons={
-"Entity": ""
+"Cardinals": "",
+"Entity": "",
+"ExtendedArray": "",
+"FloorGenerator": ""
 }
 
 [application]

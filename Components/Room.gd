@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var walls = $Walls
+onready var ground = $Floor
 export(int) var room_height = 32
 export(int) var room_length = 32
 
@@ -10,10 +11,10 @@ export var east_door = [Vector2(32,15),Vector2(32,16),Vector2(32,17)]
 export var west_door = [Vector2(0,15),Vector2(0,16),Vector2(0,17)]
 
 var doors = {
-	"north" : north_door,
-	"south" : south_door,
-	"east" : east_door,
-	"west" : west_door
+	Cardinals.vector_from_direction("N") : north_door,
+	Cardinals.vector_from_direction("S") : south_door,
+	Cardinals.vector_from_direction("E") : east_door,
+	Cardinals.vector_from_direction("W") : west_door
 }
 
 func add_door(direction):
@@ -21,17 +22,5 @@ func add_door(direction):
 		walls.set_cell(door_pos.x,door_pos.y,4)
 
 func get_random_free_position():
-	for attempts in range(10):
-		var x = randi() % walls.size.x
-		var y = randi() % walls.size.y
-		if is_cell_free(x,y):
-			return walls.map_to_world(Vector2(x,y))
-	return null
-		
-
-func is_cell_free(x,y):
-	var cell = walls.get_cell(x,y)
-	if cell in [0,-1]:
-		return true
-	else:
-		return false
+	var ground_available = ground.get_used_cells()
+	return to_global(ground.map_to_world(ground_available[randi()%ground_available.size()]))

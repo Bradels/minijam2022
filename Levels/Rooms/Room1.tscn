@@ -145,6 +145,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 3/z_index = 0
 
 [node name="Node2D" type="Node2D"]
+modulate = Color( 0.913725, 0.678431, 0.529412, 1 )
 script = ExtResource( 2 )
 
 [node name="Floor" type="TileMap" parent="."]
