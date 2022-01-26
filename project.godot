@@ -28,12 +28,24 @@ _global_script_classes=[ {
 "class": "FloorGenerator",
 "language": "GDScript",
 "path": "res://Components/FloorGenerator.gd"
+}, {
+"base": "Reference",
+"class": "NetWorkedManager",
+"language": "GDScript",
+"path": "res://Lib/Network/NetWorkedManager.gd"
+}, {
+"base": "Reference",
+"class": "NetWorkedNode",
+"language": "GDScript",
+"path": "res://Lib/Network/NetworkedNode.gd"
 } ]
 _global_script_class_icons={
 "Cardinals": "",
 "Entity": "",
 "ExtendedArray": "",
-"FloorGenerator": ""
+"FloorGenerator": "",
+"NetWorkedManager": "",
+"NetWorkedNode": ""
 }
 
 [application]

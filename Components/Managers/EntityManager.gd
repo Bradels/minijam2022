@@ -85,7 +85,8 @@ func _on_entity_prop_updated(id,prop,value):
 	if is_host:
 		rpc("_remote_update_prop",id,prop,value)
 	else:
-		rpc_id(1,"_remote_update_prop",id,prop,value)
+		if nodes[id].is_active:
+			rpc_id(1,"_remote_update_prop",id,prop,value)
 
 func _remote_update_prop(id,prop,value):
 	if is_host:
@@ -93,7 +94,8 @@ func _remote_update_prop(id,prop,value):
 		_apply_entity_prop(id,prop,value)
 		
 	elif get_tree().get_rpc_sender_id() == 1:
-		_apply_entity_prop(id,prop,value)
+		if !nodes[id].is_active: 
+			_apply_entity_prop(id,prop,value)
 
 func _apply_entity_prop(id,prop,value):
 	if nodes.has(id) && nodes[id].has(prop):

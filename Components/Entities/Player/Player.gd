@@ -94,5 +94,6 @@ func fire():
 	})
 
 func damage(amount):
-	health -= amount
-	emit_signal("entity_prop_updated",id,"health",amount)
+	if is_active:
+		health -= amount
+		emit_signal("entity_prop_updated",id,"health",amount)
